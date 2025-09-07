@@ -3,6 +3,7 @@
 AppControler::AppControler()
 {
 	programState = ProgramStates::DEFAULT;
+	LOG_INFO("App Controler Started");
 }
 
 void AppControler::Run() {

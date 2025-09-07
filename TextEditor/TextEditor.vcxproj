@@ -125,9 +125,17 @@
   <ItemGroup>
     <ClCompile Include="AppControler.cpp" />
     <ClCompile Include="AppControler.hpp" />
+    <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TextBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Config.hpp" />
+    <ClInclude Include="FileSystem.hpp" />
+    <ClInclude Include="Logger.hpp" />
+    <ClInclude Include="Paths.hpp" />
+    <ClInclude Include="TextBuffer.hpp" />
     <ClInclude Include="ProgramStates.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

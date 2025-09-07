@@ -1,68 +1,53 @@
 #include "Logger.hpp"
 
-Logger::Logger(const std::string& filename)
-	: logFile(filename.empty() ? nullptr : new std::ofstream(filename, std::ios::app))
-{
+Logger::Logger(const std::string& filename) {
+    if (!filename.empty()) {
+        logFile.open(filename, std::ios::app);
+        toFile = logFile.is_open();
+    }
 }
 
-Logger::~Logger()
-{
-	if (logFile) {
-		logFile->close();
-		delete logFile;
-	}
-
+Logger::~Logger() {
+    if (logFile.is_open()) {
+        logFile.close();
+    }
 }
 
-void Logger::log(LogLevel level, std::string message)
-{
-	std::string prefix = getTime() + " [" + levelToString(level) + "] ";
+void Logger::log(LogLevel level, const std::string& message) {
+    std::string prefix = getTime() + " [" + levelToString(level) + "] ";
 
-	if (logFile && logFile->is_open()) {
-		(*logFile) << prefix << message << std::endl;
-	}
-	else {
-		std::cout << prefix << message << std::endl;
-	}
+    if (toFile) {
+        logFile << prefix << message << std::endl;
+    }
 
 }
 
-void Logger::debug(const std::string msg)
-{
-	log(LogLevel::DEBUG, msg);
+void Logger::debug(const std::string& msg)  { log(LogLevel::DEBUG, msg); }
+void Logger::info(const std::string& msg)   { log(LogLevel::INFO, msg); }
+void Logger::warn(const std::string& msg)   { log(LogLevel::WARNING, msg); }
+void Logger::error(const std::string& msg)  { log(LogLevel::ERROR, msg); }
+
+std::string Logger::levelToString(LogLevel level) {
+    switch (level) {
+    case LogLevel::DEBUG:   return "DEBUG";
+    case LogLevel::INFO:    return "INFO";
+    case LogLevel::WARNING: return "WARNING";
+    case LogLevel::ERROR:   return "ERROR";
+    }
+    return "UNKNOWN";
 }
 
-void Logger::info(const std::string msg)
-{
-	log(LogLevel::INFO, msg);
-}
+std::string Logger::getTime() {
+    std::time_t now = std::time(nullptr);
+    struct tm timeInfo {};
 
-void Logger::warning(const std::string msg)
-{
-	log(LogLevel::WARNING, msg);
-}
+#ifdef _WIN32
+    localtime_s(&timeInfo, &now);
+#else
+    localtime_r(&now, &timeInfo);
+#endif
 
-void Logger::error(const std::string msg)
-{
-	log(LogLevel::ERROR, msg);
-}
-
-std::string Logger::levelToString(LogLevel level)
-{
-	switch (level)
-	{
-	case LogLevel::DEBUG:	return "DEBUG";
-	case LogLevel::INFO:	return "INFO";
-	case LogLevel::WARNING:	return "WARNING";
-	case LogLevel::ERROR:	return "ERROR";
-	}
-	return "UNKNOWN";
-}
-
-std::string Logger::getTime()
-{
-	std::time_t now = std::time(nullptr);
-	char buf[20];
-	std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", std::localtime(&now));
-	return buf;
+    char buf[20];
+    std::strftime(buf, sizeof(buf), "%Y-%m-%d %H:%M:%S", &timeInfo);
+    return buf;
 }
