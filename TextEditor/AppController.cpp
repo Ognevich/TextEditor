@@ -5,29 +5,35 @@ AppControler::AppControler()
 	programState = ProgramStates::DEFAULT;
 }
 
-void AppControler::Run() {
+void AppControler::startProgram()
+{
+	init();
+	run();
+}
+
+
+void AppControler::init()
+{
+	buffer.initBuffer();
+}
+
+void AppControler::run() {
 
 	FileSystem fileSystem;
-	TextBuffer buffer;
 
 
 	std::vector<std::string> lines = fileSystem.LoadFromFile("testBuffer.txt");
 
 	while (1) {
 
-		ClearScreen::clear();
+		buffer.addLine("first line");
 
-		buffer.clearBuffer();
+		cursor.setRows(0);
+		cursor.setCols(4);
 
-		buffer.setBufferLines(lines);
+		render.RenderBufferWithCursor(cursor, buffer);
 
-		buffer.printBufferContent();
-
-		buffer.deleteLine(3);
-		buffer.deleteLine(2);
-		buffer.deleteLine(4);
-
-
+		ClearScreen::clear(buffer.getBufferSize());
 	}
 
 }

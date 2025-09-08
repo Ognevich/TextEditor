@@ -1,6 +1,21 @@
 #include "TextBuffer.hpp"
 
 
+TextBuffer::TextBuffer()
+{
+	this->numRows = 30;
+	this->numCols = 80;
+}
+
+void TextBuffer::initBuffer()
+{
+	for (int i = 0; i < numRows; i++) {
+
+		lines.push_back(std::string(numCols, ' '));
+
+	}
+}
+
 void TextBuffer::addLine(const std::string& line)
 {
 	this->lines.push_back(line);
@@ -8,12 +23,12 @@ void TextBuffer::addLine(const std::string& line)
 
 void TextBuffer::deleteLine(int index)
 {
-	if (index < 0 || index >= lines.size()) {
+	if (index-1 < 0 || index-1 >= lines.size()) {
 		LOG_ERROR("index out of range");
 		return;
 	}
 
-	lines.erase(lines.begin() + index);
+	lines[index - 1] = std::string(numCols, ' ');
 }
 
 void TextBuffer::editLineByIndex(int index, std::string newInfo)
@@ -32,6 +47,11 @@ void TextBuffer::clearBuffer()
 	lines.clear();
 }
 
+int TextBuffer::getBufferSize()
+{
+	return lines.size();
+}
+
 
 void TextBuffer::printBufferContent()
 {
@@ -43,4 +63,9 @@ void TextBuffer::printBufferContent()
 void TextBuffer::setBufferLines(std::vector<std::string> lines)
 {
 	this->lines = lines;
+}
+
+std::vector<std::string> TextBuffer::getBufferLines()
+{
+	return this->lines;
 }
