@@ -123,14 +123,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AppControler.cpp" />
-    <ClCompile Include="AppControler.hpp" />
+    <ClCompile Include="AppController.cpp" />
+    <ClCompile Include="AppController.hpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="Logger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TextBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClearScreen.hpp" />
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="FileSystem.hpp" />
     <ClInclude Include="Logger.hpp" />

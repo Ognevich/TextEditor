@@ -10,13 +10,13 @@ class FileSystem {
 
 private:
 
+    template <typename T>
+    bool checkFileOpen(T& file);
 public:
 
-	std::vector<std::string> LoadFromFile(std::string & filePath);
-	void saveToFile(std::string& filePath, std::vector<std::string> data);
+	std::vector<std::string> LoadFromFile(const std::string & filePath);
+	void saveToFile(const std::string& filePath, std::vector<std::string> data);
 
-	template <typename T>
-	bool checkFileOpen(T& file);
 
 };
 

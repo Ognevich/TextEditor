@@ -1,7 +1,7 @@
 #include "FileSystem.hpp"
 #include "Logger.hpp"
 
-std::vector<std::string> FileSystem::LoadFromFile(std::string& filePath)
+std::vector<std::string> FileSystem::LoadFromFile(const std::string& filePath)
 {
     std::ifstream file(filePath);
 
@@ -21,7 +21,7 @@ std::vector<std::string> FileSystem::LoadFromFile(std::string& filePath)
     return lines;
 }
 
-void FileSystem::saveToFile(std::string& filePath, std::vector<std::string> data)
+void FileSystem::saveToFile(const std::string& filePath, std::vector<std::string> data)
 {
 
     std::ofstream file(filePath);
