@@ -1,8 +1,16 @@
-﻿  AppController.cpp
-D:\my_projects\c++\TextEditor\TextEditor\AppController.cpp(23,13): warning C4101: 'fileSystem': unreferenced local variable
-  AppController.hpp
+﻿  AppController.hpp
+  Cursor.cpp
   Renderer.cpp
+D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(13,5): error C2143: syntax error: missing '}' before 'constant'
+  (compiling source file 'Renderer.cpp')
+  
+D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(13,5): error C2059: syntax error: 'constant'
+  (compiling source file 'Renderer.cpp')
+  
+D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(14,1): error C2143: syntax error: missing ';' before '}'
+  (compiling source file 'Renderer.cpp')
+  
+D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(14,1): error C2059: syntax error: '}'
+  (compiling source file 'Renderer.cpp')
+  
   Generating Code...
-  TextEditor.vcxproj -> D:\my_projects\c++\TextEditor\x64\Debug\TextEditor.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.

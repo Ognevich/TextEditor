@@ -27,7 +27,7 @@ void AppControler::run() {
 
 	cursor.setRows(0);
 	cursor.setCols(4);
-	ClearScreen::hideCursor();
+	Cursor::hideCursor();
 
 	buffer.editLineByIndex(1, "first line");
 	buffer.editLineByIndex(5, "adfadfadfadfirst line");
@@ -42,8 +42,10 @@ void AppControler::run() {
 
 		if (buffer.isBufferDontEquals()) {
 			buffer.setConstantBufferLines(buffer.getBufferLines());
-			render.RenderAllBuffer(buffer);
+			render.RenderBufferLine(buffer, 6);
 		}
+
+
 
 		ClearScreen::clear();
 	}

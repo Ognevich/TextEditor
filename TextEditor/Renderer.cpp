@@ -18,11 +18,10 @@ void Renderer::RenderAllBuffer(TextBuffer& buffer)
 
 void Renderer::RenderBufferLine(TextBuffer& buffer, int lineIndex)
 {
-
     std::vector<std::string> lines = buffer.getBufferLines();
-    std::string line = lines[lineIndex];
+    std::string line = lines[lineIndex-1];
 
-
+    std::cout << lineIndex << "\t|" << " " << line << std::endl;
 }
 
 
