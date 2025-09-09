@@ -6,7 +6,7 @@ int main() {
 	Logger::getInstance("app.log");
 	AppControler app;
 
-	app.Run();
+	app.startProgram();
 
 	return 0;
 }

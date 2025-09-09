@@ -10,9 +10,7 @@ TextBuffer::TextBuffer()
 void TextBuffer::initBuffer()
 {
 	for (int i = 0; i < numRows; i++) {
-
 		lines.push_back(std::string(numCols, ' '));
-
 	}
 }
 
@@ -33,12 +31,12 @@ void TextBuffer::deleteLine(int index)
 
 void TextBuffer::editLineByIndex(int index, std::string newInfo)
 {
-	if (index-1 < 0 || index-1 >= lines.size()) {
+	if (index < 0 || index >= lines.size()) {
 		LOG_ERROR("index out of range");
 		return;
 	}
 
-	lines[index - 1] = newInfo;
+	lines[index] = newInfo;
 
 }
 
@@ -50,14 +48,6 @@ void TextBuffer::clearBuffer()
 int TextBuffer::getBufferSize()
 {
 	return lines.size();
-}
-
-
-void TextBuffer::printBufferContent()
-{
-	for (int i = 0; i < lines.size(); i++) {
-		std::cout << i+1 << "\t" << lines[i] << std::endl;
-	}
 }
 
 void TextBuffer::setBufferLines(std::vector<std::string> lines)

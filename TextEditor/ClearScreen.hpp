@@ -9,33 +9,41 @@
 
 class ClearScreen {
 public:
-    static void clear(int size) {
+    static void clear() {
 #ifdef _WIN32
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-        if (hConsole == INVALID_HANDLE_VALUE) return;
+        COORD cursorPosition = { 0, 0 };
+        SetConsoleCursorPosition(hConsole, cursorPosition);
+#else
+        std::cout << "\033[H";
+        std::cout.flush();
+#endif
+    }
 
+
+    static void showCursor() {
+#ifdef _WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         CONSOLE_CURSOR_INFO cursorInfo;
         GetConsoleCursorInfo(hConsole, &cursorInfo);
-        cursorInfo.bVisible = FALSE;
+        cursorInfo.bVisible = TRUE;
         SetConsoleCursorInfo(hConsole, &cursorInfo);
-
-        CONSOLE_SCREEN_BUFFER_INFO csbi;
-        if (!GetConsoleScreenBufferInfo(hConsole, &csbi)) return;
-        COORD cursorPos = csbi.dwCursorPosition;
-
-        DWORD count;
-        for (int i = 0; i < size; ++i) {
-            COORD linePos = { 0, short(cursorPos.Y + i) }; 
-            FillConsoleOutputCharacter(hConsole, ' ', csbi.dwSize.X, linePos, &count);
-            FillConsoleOutputAttribute(hConsole, csbi.wAttributes, csbi.dwSize.X, linePos, &count);
-        }
-        SetConsoleCursorPosition(hConsole, cursorPos);
-
 #else
-        for (int i = 0; i < size; ++i) {
-            std::cout << "\033[1A"   
-                << "\033[2K";  
+        std::cout << "\033[?25h";
+        std::cout.flush();
+#endif
+    }
+
+    static void hideCursor() {
+#ifdef _WIN32
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        CONSOLE_CURSOR_INFO cursorInfo;
+        if (GetConsoleCursorInfo(hConsole, &cursorInfo)) {
+            cursorInfo.bVisible = FALSE;
+            SetConsoleCursorInfo(hConsole, &cursorInfo);
         }
+#else
+        std::cout << "\033[?25l";
         std::cout.flush();
 #endif
     }

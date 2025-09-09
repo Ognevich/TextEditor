@@ -25,7 +25,6 @@ public:
 
 	int getBufferSize();
 
-	void printBufferContent();
 	void setBufferLines(std::vector<std::string> lines);
 	std::vector<std::string> getBufferLines();
 
