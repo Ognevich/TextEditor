@@ -10,7 +10,9 @@ private:
 
 	int numRows;
 	int numCols;
-	std::vector<std::string> lines;
+
+	std::vector<std::string> constantBuffer;
+	std::vector<std::string> buffer;
 
 public:
 
@@ -25,9 +27,16 @@ public:
 
 	int getBufferSize();
 
-	void setBufferLines(std::vector<std::string> lines);
-	std::vector<std::string> getBufferLines();
+	void setBufferLines(std::vector<std::string> buffer);
+	void setConstantBufferLines(std::vector<std::string> buffer);
 
+	std::vector<std::string> getBufferLines();
+	std::vector<std::string> getConstantBufferLines();
+
+	int getBufferRows();
+	int getBufferCols();
+
+	bool isBufferDontEquals();
 };
 
 #endif

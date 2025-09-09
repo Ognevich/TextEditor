@@ -10,52 +10,90 @@ TextBuffer::TextBuffer()
 void TextBuffer::initBuffer()
 {
 	for (int i = 0; i < numRows; i++) {
-		lines.push_back(std::string(numCols, ' '));
+		buffer.push_back(std::string(numCols, ' '));
 	}
+
+	constantBuffer = buffer;
 }
 
 void TextBuffer::addLine(const std::string& line)
 {
-	this->lines.push_back(line);
+	this->buffer.push_back(line);
 }
 
 void TextBuffer::deleteLine(int index)
 {
-	if (index-1 < 0 || index-1 >= lines.size()) {
+	if (index-1 < 0 || index-1 >= buffer.size()) {
 		LOG_ERROR("index out of range");
 		return;
 	}
 
-	lines[index - 1] = std::string(numCols, ' ');
+	buffer[index - 1] = std::string(numCols, ' ');
 }
 
 void TextBuffer::editLineByIndex(int index, std::string newInfo)
 {
-	if (index < 0 || index >= lines.size()) {
+	if (index < 0 || index >= buffer.size()) {
 		LOG_ERROR("index out of range");
 		return;
 	}
 
-	lines[index] = newInfo;
+	buffer[index] = newInfo;
 
 }
 
 void TextBuffer::clearBuffer()
 {
-	lines.clear();
+	buffer.clear();
 }
 
 int TextBuffer::getBufferSize()
 {
-	return lines.size();
+	return buffer.size();
 }
 
-void TextBuffer::setBufferLines(std::vector<std::string> lines)
+void TextBuffer::setBufferLines(std::vector<std::string> buffer)
 {
-	this->lines = lines;
+	this->buffer = buffer;
+}
+
+void TextBuffer::setConstantBufferLines(std::vector<std::string> buffer)
+{
+	this->constantBuffer = buffer;
 }
 
 std::vector<std::string> TextBuffer::getBufferLines()
 {
-	return this->lines;
+	return this->buffer;
+}
+
+std::vector<std::string> TextBuffer::getConstantBufferLines()
+{
+	return this->constantBuffer;
+}
+
+int TextBuffer::getBufferRows()
+{
+	return this->numRows;
+}
+
+int TextBuffer::getBufferCols()
+{
+	return this->numCols;
+}
+
+bool TextBuffer::isBufferDontEquals()
+{
+	if (constantBuffer.size() != buffer.size()) {
+		return true;
+	}
+
+	for (int i = 0; i < buffer.size(); i++) {
+		if (buffer[i] != constantBuffer[i]) {
+			return true;
+		}
+	}
+
+	return false;
+
 }

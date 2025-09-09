@@ -1,17 +1,32 @@
 #include "Renderer.hpp"
 
-void Renderer::RenderBufferWithCursor(Cursor& cursor, TextBuffer& buffer)
+Renderer::Renderer()
+{
+    this->currentRow = 0;
+}
+
+void Renderer::RenderAllBuffer(TextBuffer& buffer)
 {
 	std::vector<std::string> lines = buffer.getBufferLines();
 
-    for (int i = 0; i < lines.size(); i++) {
+    for (int  i = currentRow; i < buffer.getBufferRows() + currentRow; i++) {
         std::string line = lines[i];
-        if (i == cursor.getRows()) {
-            int col = cursor.getCols();
-            if (col < 0) col = 0;
-            if (col > line.size()) col = line.size();
-            line.insert(col, "|");
-        }
-        std::cout << i << "\t|" << " " << line << std::endl;
+
+        std::cout << i+1 << "\t|" << " " << line << std::endl;
     }
+}
+
+void Renderer::RenderBufferLine(TextBuffer& buffer, int lineIndex)
+{
+
+    std::vector<std::string> lines = buffer.getBufferLines();
+    std::string line = lines[lineIndex];
+
+
+}
+
+
+void Renderer::setCurrentRow(int row)
+{
+    this->currentRow = row;
 }

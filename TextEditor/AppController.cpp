@@ -15,6 +15,7 @@ void AppControler::startProgram()
 void AppControler::init()
 {
 	buffer.initBuffer();
+	
 }
 
 void AppControler::run() {
@@ -28,11 +29,21 @@ void AppControler::run() {
 	cursor.setCols(4);
 	ClearScreen::hideCursor();
 
+	buffer.editLineByIndex(1, "first line");
+	buffer.editLineByIndex(5, "adfadfadfadfirst line");
+	buffer.addLine("daf");
+
+	render.setCurrentRow(1);
+
+	render.RenderAllBuffer(buffer);
 	while (1) {
 
-		buffer.editLineByIndex(1,"first line");
+		buffer.addLine("daf");
 
-		render.RenderBufferWithCursor(cursor, buffer);
+		if (buffer.isBufferDontEquals()) {
+			buffer.setConstantBufferLines(buffer.getBufferLines());
+			render.RenderAllBuffer(buffer);
+		}
 
 		ClearScreen::clear();
 	}
