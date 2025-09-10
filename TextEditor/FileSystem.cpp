@@ -1,5 +1,4 @@
 #include "FileSystem.hpp"
-#include "Logger.hpp"
 
 std::vector<std::string> FileSystem::LoadFromFile(const std::string& filePath)
 {

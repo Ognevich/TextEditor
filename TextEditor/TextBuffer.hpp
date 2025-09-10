@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Logger.hpp"
+//#include "Logger.hpp"
 
 class TextBuffer {
 private:

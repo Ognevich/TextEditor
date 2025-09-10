@@ -21,10 +21,10 @@ public:
     }
 
     void log(LogLevel level, const std::string& message);
-    void debug  (const std::string& msg);
-    void info   (const std::string& msg);
-    void warn   (const std::string& msg);
-    void error  (const std::string& msg);
+    void debug(const std::string& msg);
+    void info(const std::string& msg);
+    void warn(const std::string& msg);
+    void error(const std::string& msg);
 
 private:
     std::ofstream logFile;
@@ -32,8 +32,8 @@ private:
 
     Logger(const std::string& filename = "");
     ~Logger();
-    Logger(const Logger&) = delete;          
-    Logger& operator=(const Logger&) = delete; 
+    Logger(const Logger&) = delete;
+    Logger& operator=(const Logger&) = delete;
 
     std::string levelToString(LogLevel level);
     std::string getTime();

@@ -1,16 +1,7 @@
-﻿  AppController.hpp
-  Cursor.cpp
-  Renderer.cpp
-D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(13,5): error C2143: syntax error: missing '}' before 'constant'
-  (compiling source file 'Renderer.cpp')
-  
-D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(13,5): error C2059: syntax error: 'constant'
-  (compiling source file 'Renderer.cpp')
-  
-D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(14,1): error C2143: syntax error: missing ';' before '}'
-  (compiling source file 'Renderer.cpp')
-  
-D:\my_projects\c++\TextEditor\TextEditor\Logger.hpp(14,1): error C2059: syntax error: '}'
-  (compiling source file 'Renderer.cpp')
-  
+﻿  AppControler.cpp
+  main.cpp
   Generating Code...
+x64\Debug\AppControler.obj : warning LNK4042: object specified more than once; extras ignored
+  TextEditor.vcxproj -> D:\my_projects\c++\TextEditor\x64\Debug\TextEditor.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

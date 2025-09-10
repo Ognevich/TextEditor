@@ -2,6 +2,7 @@
 #define _RENDERER_HPP_
 #include "Cursor.hpp"
 #include "TextBuffer.hpp"
+#include <iostream>
 
 class Renderer {
 public:

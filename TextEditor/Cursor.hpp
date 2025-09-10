@@ -4,6 +4,9 @@
 #include <windows.h>
 #endif
 
+#include <string>
+#include <iostream>
+
 class Cursor {
 
 private:
@@ -19,7 +22,6 @@ public:
 
 	void setRows(int newRows);
 	void setCols(int newCols);
-
     static void showCursor()
     {
 
@@ -50,9 +52,7 @@ public:
         std::cout.flush();
 #endif
     }
-
 };
-
 
 #endif
 

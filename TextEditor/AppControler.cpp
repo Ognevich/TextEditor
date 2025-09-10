@@ -1,4 +1,5 @@
-#include "AppController.hpp"
+
+#include "AppControler.hpp"
 
 AppControler::AppControler()
 {
@@ -23,7 +24,7 @@ void AppControler::run() {
 	FileSystem fileSystem;
 
 
-	//std::vector<std::string> lines = fileSystem.LoadFromFile("testBuffer.txt");
+	std::vector<std::string> lines = fileSystem.LoadFromFile("testBuffer.txt");
 
 	cursor.setRows(0);
 	cursor.setCols(4);

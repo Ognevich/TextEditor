@@ -1,5 +1,6 @@
 #include "Renderer.hpp"
 
+
 Renderer::Renderer()
 {
     this->currentRow = 0;
@@ -7,23 +8,21 @@ Renderer::Renderer()
 
 void Renderer::RenderAllBuffer(TextBuffer& buffer)
 {
-	std::vector<std::string> lines = buffer.getBufferLines();
+    std::vector<std::string> lines = buffer.getBufferLines();
 
-    for (int  i = currentRow; i < buffer.getBufferRows() + currentRow; i++) {
+    for (int i = currentRow; i < buffer.getBufferRows() + currentRow; i++) {
         std::string line = lines[i];
-
-        std::cout << i+1 << "\t|" << " " << line << std::endl;
+        std::cout << i + 1 << "\t|" << " " << line << std::endl;
     }
 }
 
 void Renderer::RenderBufferLine(TextBuffer& buffer, int lineIndex)
 {
     std::vector<std::string> lines = buffer.getBufferLines();
-    std::string line = lines[lineIndex-1];
+    std::string line = lines[lineIndex - 1];
 
     std::cout << lineIndex << "\t|" << " " << line << std::endl;
 }
-
 
 void Renderer::setCurrentRow(int row)
 {

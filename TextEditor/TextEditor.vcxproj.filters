@@ -27,7 +27,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AppController.hpp">
+    <ClCompile Include="AppControler.hpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="TextBuffer.cpp">
@@ -39,7 +39,7 @@
     <ClCompile Include="Logger.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="AppController.cpp">
+    <ClCompile Include="AppControler.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Cursor.cpp">

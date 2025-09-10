@@ -3,8 +3,7 @@
 #include "ProgramStates.hpp"
 #include "TextBuffer.hpp"
 #include "FileSystem.hpp"
-#include "Logger.hpp"
-#include "Windows.h"
+#include <Windows.h>
 #include "ClearScreen.hpp"
 #include "Renderer.hpp"
 #include "Cursor.hpp"
