@@ -26,6 +26,7 @@ public:
 	void clearBuffer();
 
 	int getBufferSize();
+	std::vector<int> getChangedLines(int startRow, int visibleCount);
 
 	void setBufferLines(std::vector<std::string> buffer);
 	void setConstantBufferLines(std::vector<std::string> buffer);

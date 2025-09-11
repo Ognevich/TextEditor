@@ -14,12 +14,14 @@ private:
 	TextBuffer buffer;
 	Cursor cursor;
 	Renderer render;
+
+	void init();
+	void update();
+
 public:
 
 	AppControler();
 
-
-	void init();
 	void startProgram();
 	void run();
 

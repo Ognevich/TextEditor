@@ -16,39 +16,34 @@ void AppControler::startProgram()
 void AppControler::init()
 {
 	buffer.initBuffer();
+	Cursor::hideCursor();
 	
 }
 
+void AppControler::update() {
+    int totalRows = buffer.getBufferSize();
+    int visibleRows = buffer.getBufferRows();
+
+    int startRow = (totalRows - visibleRows + 1 > 0) ? (totalRows - visibleRows + 1) : 1;
+
+    int count = (visibleRows < totalRows - startRow + 1) ? visibleRows : (totalRows - startRow + 1);
+
+    auto changedRows = buffer.getChangedLines(startRow, count);
+
+    for (int idx : changedRows) {
+        int screenRow = idx - startRow;
+        cursor.moveCursor(screenRow, 0);
+        render.RenderBufferLine(buffer, idx);
+    }
+
+    buffer.setConstantBufferLines(buffer.getBufferLines());
+}
 void AppControler::run() {
+    buffer.editLineByIndex(31, "first line");
+    buffer.editLineByIndex(314, "first line");
+    render.RenderAllBuffer(buffer);
 
-	FileSystem fileSystem;
-
-
-	std::vector<std::string> lines = fileSystem.LoadFromFile("testBuffer.txt");
-
-	cursor.setRows(0);
-	cursor.setCols(4);
-	Cursor::hideCursor();
-
-	buffer.editLineByIndex(1, "first line");
-	buffer.editLineByIndex(5, "adfadfadfadfirst line");
-	buffer.addLine("daf");
-
-	render.setCurrentRow(1);
-
-	render.RenderAllBuffer(buffer);
-	while (1) {
-
-		buffer.addLine("daf");
-
-		if (buffer.isBufferDontEquals()) {
-			buffer.setConstantBufferLines(buffer.getBufferLines());
-			render.RenderBufferLine(buffer, 6);
-		}
-
-
-
-		ClearScreen::clear();
-	}
-
+    while (programState != ProgramStates::STOP_PROGRAM) {
+        update();
+    }
 }

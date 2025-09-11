@@ -19,6 +19,7 @@ public:
 
 	int getRows();
 	int getCols();
+    void moveCursor(int row, int col);
 
 	void setRows(int newRows);
 	void setCols(int newCols);

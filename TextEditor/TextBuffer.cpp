@@ -18,7 +18,10 @@ void TextBuffer::initBuffer()
 
 void TextBuffer::addLine(const std::string& line)
 {
-	this->buffer.push_back(line);
+	for (int i = 0; i < buffer.size(); i++) {
+		buffer[i] = line;
+	}
+	buffer[buffer.size() - 1] = line;
 }
 
 void TextBuffer::deleteLine(int index)
@@ -31,15 +34,17 @@ void TextBuffer::deleteLine(int index)
 	buffer[index - 1] = std::string(numCols, ' ');
 }
 
-void TextBuffer::editLineByIndex(int index, std::string newInfo)
+void TextBuffer::editLineByIndex(int index, const std::string newInfo)
 {
-	if (index < 0 || index >= buffer.size()) {
-		/*LOG_ERROR("index out of range");*/
-		return;
+	if (index < 1) return; 
+
+	int idx = index - 1; 
+
+	while (buffer.size() <= idx) {
+		buffer.push_back(std::string(numCols, ' '));
 	}
 
-	buffer[index] = newInfo;
-
+	buffer[idx] = newInfo;
 }
 
 void TextBuffer::clearBuffer()
@@ -50,6 +55,27 @@ void TextBuffer::clearBuffer()
 int TextBuffer::getBufferSize()
 {
 	return buffer.size();
+}
+
+std::vector<int> TextBuffer::getChangedLines(int startRow, int visibleCount)
+{
+	std::vector<int> changed;
+	int total = buffer.size();
+
+	if (startRow < 1) startRow = 1;
+
+	for (int i = 0; i < visibleCount; i++) {
+		int globalIndex = startRow - 1 + i;
+
+		std::string current = (globalIndex < total) ? buffer[globalIndex] : std::string(numCols, ' ');
+		std::string prev = (globalIndex < (int)constantBuffer.size()) ? constantBuffer[globalIndex] : std::string(numCols, ' ');
+
+		if (current != prev) {
+			changed.push_back(globalIndex + 1);
+		}
+	}
+
+	return changed;
 }
 
 void TextBuffer::setBufferLines(std::vector<std::string> buffer)
