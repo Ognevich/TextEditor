@@ -6,12 +6,15 @@
 
 #include <string>
 #include <iostream>
+#include "KeyboardControl.hpp"
+#include "MyLogger.hpp"
 
 class Cursor {
 
 private:
 	int rows;
 	int cols;
+    KeybControl keybControl;
 
 public:
 	
@@ -53,6 +56,10 @@ public:
         std::cout.flush();
 #endif
     }
+
+    void userMoveCursor();
+
+
 };
 
 #endif

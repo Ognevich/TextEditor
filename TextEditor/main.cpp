@@ -1,9 +1,10 @@
 #include "AppControler.hpp"
-//#include "Logger.hpp"
+#include "MyLogger.hpp"
 
 int main() {
 
-	//Logger::getInstance("app.log");
+	Logger::getInstance("app.log");
+
 	AppControler app;
 
 	app.startProgram();

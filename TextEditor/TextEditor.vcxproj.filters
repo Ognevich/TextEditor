@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{a4203a0a-9e05-4251-b2d4-2a37c8159971}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\KeyboardControl">
+      <UniqueIdentifier>{3deedb44-6ece-4ea3-a5e6-17fe6dd6a450}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,7 +39,7 @@
     <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
-    <ClCompile Include="Logger.cpp">
+    <ClCompile Include="MyLogger.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="AppControler.cpp">
@@ -47,6 +50,9 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardControl.cpp">
+      <Filter>Source Files\KeyboardControl</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,7 +71,7 @@
     <ClInclude Include="FileSystem.hpp">
       <Filter>Source Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Logger.hpp">
+    <ClInclude Include="MyLogger.hpp">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="ClearScreen.hpp">
@@ -76,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="Renderer.hpp">
       <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardControl.hpp">
+      <Filter>Source Files\KeyboardControl</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ enum class LogLevel {
     DEBUG,
     INFO,
     WARNING,
-    ERROR
+    ERR
 };
 
 class Logger {

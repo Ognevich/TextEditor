@@ -27,7 +27,6 @@ void TextBuffer::addLine(const std::string& line)
 void TextBuffer::deleteLine(int index)
 {
 	if (index-1 < 0 || index-1 >= buffer.size()) {
-		/*LOG_ERROR("index out of range");*/
 		return;
 	}
 

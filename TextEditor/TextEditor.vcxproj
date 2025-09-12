@@ -129,7 +129,8 @@
     <ClCompile Include="AppControler.hpp" />
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="FileSystem.cpp" />
-    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="KeyboardControl.cpp" />
+    <ClCompile Include="MyLogger.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="TextBuffer.cpp" />
@@ -139,7 +140,8 @@
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="Cursor.hpp" />
     <ClInclude Include="FileSystem.hpp" />
-    <ClInclude Include="Logger.hpp" />
+    <ClInclude Include="KeyboardControl.hpp" />
+    <ClInclude Include="MyLogger.hpp" />
     <ClInclude Include="Paths.hpp" />
     <ClInclude Include="Renderer.hpp" />
     <ClInclude Include="TextBuffer.hpp" />

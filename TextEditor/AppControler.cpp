@@ -16,7 +16,7 @@ void AppControler::startProgram()
 void AppControler::init()
 {
 	buffer.initBuffer();
-	Cursor::hideCursor();
+	//Cursor::hideCursor();
 	
 }
 
@@ -35,15 +35,17 @@ void AppControler::update() {
         cursor.moveCursor(screenRow, 0);
         render.RenderBufferLine(buffer, idx);
     }
-
     buffer.setConstantBufferLines(buffer.getBufferLines());
 }
+
+
 void AppControler::run() {
     buffer.editLineByIndex(31, "first line");
-    buffer.editLineByIndex(314, "first line");
+    buffer.editLineByIndex(35, "someInfo");
     render.RenderAllBuffer(buffer);
 
     while (programState != ProgramStates::STOP_PROGRAM) {
         update();
+        cursor.userMoveCursor();
     }
 }

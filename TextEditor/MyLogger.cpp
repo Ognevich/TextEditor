@@ -1,4 +1,4 @@
-#include "Logger.hpp"
+#include "MyLogger.hpp"
 
 Logger::Logger(const std::string& filename) {
     if (!filename.empty()) {
@@ -25,14 +25,14 @@ void Logger::log(LogLevel level, const std::string& message) {
 void Logger::debug(const std::string& msg)  { log(LogLevel::DEBUG, msg); }
 void Logger::info(const std::string& msg)   { log(LogLevel::INFO, msg); }
 void Logger::warn(const std::string& msg)   { log(LogLevel::WARNING, msg); }
-void Logger::error(const std::string& msg)  { log(LogLevel::ERROR, msg); }
+void Logger::error(const std::string& msg)  { log(LogLevel::ERR, msg); }
 
 std::string Logger::levelToString(LogLevel level) {
     switch (level) {
     case LogLevel::DEBUG:   return "DEBUG";
     case LogLevel::INFO:    return "INFO";
     case LogLevel::WARNING: return "WARNING";
-    case LogLevel::ERROR:   return "ERROR";
+    case LogLevel::ERR:   return "ERROR";
     }
     return "UNKNOWN";
 }

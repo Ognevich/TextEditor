@@ -33,3 +33,48 @@ void Cursor::setCols(int newCols)
     this->cols = newCols;
 }
 
+void Cursor::userMoveCursor()
+{
+    cursorMovement cursorMov;
+
+    cursorMov = keybControl.checkArrowPressed();
+
+    switch (cursorMov)
+    {
+    case cursorMovement::MOVE_CURSOR_DOWN:
+    {   
+        rows++;
+        moveCursor(rows, cols);
+        LOG_INFO("Arrow down is pressed");
+        break;
+    }
+    case cursorMovement::MOVE_CURSOR_UP:
+    {
+        rows--;
+        moveCursor(rows, cols);
+        LOG_INFO("Arrow up is pressed");
+        break;
+    }
+    case cursorMovement::MOVE_CURSOR_LEFT:
+    {
+        cols--;
+        moveCursor(rows, cols);
+        LOG_INFO("Arrow left is pressed");
+        break;
+    }
+    case cursorMovement::MOVE_CURSOR_RIGHT:
+    {
+        cols++;
+        moveCursor(rows, cols);
+        LOG_INFO("Arrow right is pressed");
+        break;
+    }
+    case cursorMovement::DEFAULT:
+        break;
+    default:
+        break;
+    }
+
+
+}
+

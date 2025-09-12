@@ -3,8 +3,6 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "Logger.hpp"
-
 
 class FileSystem {
 
@@ -24,7 +22,6 @@ template <typename T>
 inline bool FileSystem::checkFileOpen(T& file)
 {
     if (!file.is_open()) {
-        LOG_ERROR("Cannot open this file");
         return 1;
     }
     else return 0;
