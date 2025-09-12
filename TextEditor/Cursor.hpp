@@ -58,8 +58,10 @@ public:
     }
 
     void userMoveCursor();
-
-
+    void MoveCursorDowm();
+    void MoveCursorUp();
+    void MoveCursorLeft();
+    void MoveCursorRight();
 };
 
 #endif

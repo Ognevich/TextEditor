@@ -25,6 +25,9 @@
     <Filter Include="Source Files\KeyboardControl">
       <UniqueIdentifier>{3deedb44-6ece-4ea3-a5e6-17fe6dd6a450}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\FileSystem">
+      <UniqueIdentifier>{b03971e4-31af-4006-8819-c344bf8af7ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -34,9 +37,6 @@
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="TextBuffer.cpp">
-      <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="MyLogger.cpp">
@@ -54,6 +54,9 @@
     <ClCompile Include="KeyboardControl.cpp">
       <Filter>Source Files\KeyboardControl</Filter>
     </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
+      <Filter>Source Files\FileSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProgramStates.hpp">
@@ -67,9 +70,6 @@
     </ClInclude>
     <ClInclude Include="Config.hpp">
       <Filter>Source Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="FileSystem.hpp">
-      <Filter>Source Files\Engine</Filter>
     </ClInclude>
     <ClInclude Include="MyLogger.hpp">
       <Filter>Source Files\Utils</Filter>
@@ -85,6 +85,12 @@
     </ClInclude>
     <ClInclude Include="KeyboardControl.hpp">
       <Filter>Source Files\KeyboardControl</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayCollisions.hpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="FileSystem.hpp">
+      <Filter>Source Files\FileSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

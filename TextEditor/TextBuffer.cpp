@@ -3,8 +3,8 @@
 
 TextBuffer::TextBuffer()
 {
-	this->numRows = 30;
-	this->numCols = 80;
+	this->numRows = BUFFER_ROWS;
+	this->numCols = BUFFER_COLS;
 }
 
 void TextBuffer::initBuffer()

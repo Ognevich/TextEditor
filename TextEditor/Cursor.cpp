@@ -3,7 +3,7 @@
 Cursor::Cursor()
 {
     this->rows = 0;
-    this->cols = 0;
+    this->cols = 10;
 }
 
 int Cursor::getRows()
@@ -43,30 +43,22 @@ void Cursor::userMoveCursor()
     {
     case cursorMovement::MOVE_CURSOR_DOWN:
     {   
-        rows++;
-        moveCursor(rows, cols);
-        LOG_INFO("Arrow down is pressed");
+        MoveCursorDowm();
         break;
     }
     case cursorMovement::MOVE_CURSOR_UP:
     {
-        rows--;
-        moveCursor(rows, cols);
-        LOG_INFO("Arrow up is pressed");
+        MoveCursorUp();
         break;
     }
     case cursorMovement::MOVE_CURSOR_LEFT:
     {
-        cols--;
-        moveCursor(rows, cols);
-        LOG_INFO("Arrow left is pressed");
+        MoveCursorLeft();
         break;
     }
     case cursorMovement::MOVE_CURSOR_RIGHT:
     {
-        cols++;
-        moveCursor(rows, cols);
-        LOG_INFO("Arrow right is pressed");
+        MoveCursorRight();
         break;
     }
     case cursorMovement::DEFAULT:
@@ -76,5 +68,33 @@ void Cursor::userMoveCursor()
     }
 
 
+}
+
+void Cursor::MoveCursorDowm()
+{
+    rows++;
+    moveCursor(rows, cols);
+    LOG_INFO("Arrow down is pressed");
+}
+
+void Cursor::MoveCursorUp()
+{
+    rows--;
+    moveCursor(rows, cols);
+    LOG_INFO("Arrow up is pressed");
+}
+
+void Cursor::MoveCursorLeft()
+{
+    cols--;
+    moveCursor(rows, cols);
+    LOG_INFO("Arrow left is pressed");
+}
+
+void Cursor::MoveCursorRight()
+{
+    cols++;
+    moveCursor(rows, cols);
+    LOG_INFO("Arrow right is pressed");
 }
 

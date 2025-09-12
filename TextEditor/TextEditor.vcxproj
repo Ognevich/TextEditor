@@ -139,6 +139,7 @@
     <ClInclude Include="ClearScreen.hpp" />
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="Cursor.hpp" />
+    <ClInclude Include="DisplayCollisions.hpp" />
     <ClInclude Include="FileSystem.hpp" />
     <ClInclude Include="KeyboardControl.hpp" />
     <ClInclude Include="MyLogger.hpp" />
