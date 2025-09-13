@@ -33,44 +33,7 @@ void Cursor::setCols(int newCols)
     this->cols = newCols;
 }
 
-void Cursor::userMoveCursor()
-{
-    cursorMovement cursorMov;
 
-    cursorMov = keybControl.checkArrowPressed();
-
-    switch (cursorMov)
-    {
-    case cursorMovement::MOVE_CURSOR_DOWN:
-    {   
-        MoveCursorDowm();
-        break;
-    }
-    case cursorMovement::MOVE_CURSOR_UP:
-    {
-        MoveCursorUp();
-        break;
-    }
-    case cursorMovement::MOVE_CURSOR_LEFT:
-    {
-        if (!dispCollisions.checkLeftSideDisplayCollision(cols))
-            MoveCursorLeft();
-        break;
-    }
-    case cursorMovement::MOVE_CURSOR_RIGHT:
-    {
-        if(!dispCollisions.checkRightSideDisplayCollision(cols))
-            MoveCursorRight();  
-        break;
-    }
-    case cursorMovement::DEFAULT:
-        break;
-    default:
-        break;
-    }
-
-
-}
 
 void Cursor::MoveCursorDowm()
 {

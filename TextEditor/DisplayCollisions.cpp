@@ -20,3 +20,22 @@ bool DisplayCollisions::checkRightSideDisplayCollision(int currentColPos)
     
     return false;
 }
+
+bool DisplayCollisions::checkUpDisplayCollision(int currentRowPos)
+{
+    
+    if (currentRowPos - 1 < 0) {
+        LOG_INFO("UP Collision is working");
+        return true;
+    }
+    return false;
+}
+
+bool DisplayCollisions::checkDownDisplayCollision(int currentRowPos, int bufferSize)
+{
+    if (currentRowPos + 2 > bufferSize) {
+        LOG_INFO("DOWN Collision is working");
+        return true;
+    }
+    return false;
+}

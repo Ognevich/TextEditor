@@ -60,12 +60,59 @@ public:
 #endif
     }
 
-    void userMoveCursor();
+    template <typename T>
+    void userMoveCursor(T& buffer);
+
+
     void MoveCursorDowm();
     void MoveCursorUp();
     void MoveCursorLeft();
     void MoveCursorRight();
 };
+
+
+template<typename T>
+inline void Cursor::userMoveCursor(T& buffer)
+{
+    cursorMovement cursorMov;
+
+    cursorMov = keybControl.checkArrowPressed();
+
+    switch (cursorMov)
+    {
+    case cursorMovement::MOVE_CURSOR_DOWN:
+    {
+        if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize()))
+            MoveCursorDowm();
+        break;
+    }
+    case cursorMovement::MOVE_CURSOR_UP:
+    {
+        if (!dispCollisions.checkUpDisplayCollision(rows))
+            MoveCursorUp();
+
+        break;
+    }
+    case cursorMovement::MOVE_CURSOR_LEFT:
+    {
+        if (!dispCollisions.checkLeftSideDisplayCollision(cols))
+            MoveCursorLeft();
+        break;
+    }
+    case cursorMovement::MOVE_CURSOR_RIGHT:
+    {
+        if (!dispCollisions.checkRightSideDisplayCollision(cols))
+            MoveCursorRight();
+        break;
+    }
+    case cursorMovement::DEFAULT:
+        break;
+    default:
+        break;
+    }
+
+}
+
 
 #endif
 

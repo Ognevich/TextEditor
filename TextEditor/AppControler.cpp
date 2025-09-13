@@ -40,12 +40,10 @@ void AppControler::update() {
 
 
 void AppControler::run() {
-    buffer.editLineByIndex(31, "first line");
-    buffer.editLineByIndex(35, "someInfo");
     render.RenderAllBuffer(buffer);
 
     while (programState != ProgramStates::STOP_PROGRAM) {
         update();
-        cursor.userMoveCursor();
+        cursor.userMoveCursor(buffer);
     }
 }

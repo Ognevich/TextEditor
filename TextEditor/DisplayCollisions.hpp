@@ -9,6 +9,9 @@ public:
 
 	bool checkLeftSideDisplayCollision(int currentColPos);
 	bool checkRightSideDisplayCollision(int currentColPos);
+	bool checkUpDisplayCollision(int currentRowPos);
+
+	bool checkDownDisplayCollision(int currentRowPos, int bufferSize);
 
 };
 
