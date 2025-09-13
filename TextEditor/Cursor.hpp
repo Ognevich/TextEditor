@@ -8,6 +8,8 @@
 #include <iostream>
 #include "KeyboardControl.hpp"
 #include "MyLogger.hpp"
+#include "Config.hpp"
+#include "DisplayCollisions.hpp"
 
 class Cursor {
 
@@ -15,6 +17,7 @@ private:
 	int rows;
 	int cols;
     KeybControl keybControl;
+    DisplayCollisions dispCollisions;
 
 public:
 	

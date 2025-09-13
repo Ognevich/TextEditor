@@ -3,7 +3,7 @@
 Cursor::Cursor()
 {
     this->rows = 0;
-    this->cols = 10;
+    this->cols = START_CURSOR_POS;
 }
 
 int Cursor::getRows()
@@ -53,12 +53,14 @@ void Cursor::userMoveCursor()
     }
     case cursorMovement::MOVE_CURSOR_LEFT:
     {
-        MoveCursorLeft();
+        if (!dispCollisions.checkLeftSideDisplayCollision(cols))
+            MoveCursorLeft();
         break;
     }
     case cursorMovement::MOVE_CURSOR_RIGHT:
     {
-        MoveCursorRight();
+        if(!dispCollisions.checkRightSideDisplayCollision(cols))
+            MoveCursorRight();  
         break;
     }
     case cursorMovement::DEFAULT:

@@ -57,6 +57,9 @@
     <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files\FileSystem</Filter>
     </ClCompile>
+    <ClCompile Include="DisplayCollisions.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProgramStates.hpp">

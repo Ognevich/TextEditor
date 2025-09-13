@@ -1,16 +1,6 @@
-﻿  AppControler.cpp
-  AppControler.hpp
-  Cursor.cpp
-  FileSystem.cpp
-  KeyboardControl.cpp
-  MyLogger.cpp
-  main.cpp
-  Renderer.cpp
-  TextBuffer.cpp
-D:\my_projects\c++\TextEditor\TextEditor\TextBuffer.cpp(56,20): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
-D:\my_projects\c++\TextEditor\TextEditor\TextBuffer.cpp(62,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  Cursor.cpp
+  DisplayCollisions.cpp
   Generating Code...
-x64\Debug\AppControler.obj : warning LNK4042: object specified more than once; extras ignored
   TextEditor.vcxproj -> D:\my_projects\c++\TextEditor\x64\Debug\TextEditor.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
