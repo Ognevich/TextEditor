@@ -2,8 +2,9 @@
 #define _KEYBOARD_CONTROL_HPP_
 #include <windows.h>
 #include <iostream>
+#include "MyLogger.hpp"
 
-enum class cursorMovement {
+enum class CursorMovementState {
 	MOVE_CURSOR_DOWN,
 	MOVE_CURSOR_UP,
 	MOVE_CURSOR_LEFT,
@@ -11,15 +12,31 @@ enum class cursorMovement {
 	DEFAULT
 };
 
+enum class EditorState {
+	MOVE_STATE,
+	EDIT_STATE,
+	DEFAULT
+};
+
+enum class EditCommand {
+	NONE,
+	SWITCH_TO_MOVE,
+	SWITCH_TO_EDIT
+};
+
 class KeybControl {
 	
-	cursorMovement cursorMov;
+	CursorMovementState cursorMov;
+	EditorState editState;
 
 public:
 
 	KeybControl();
 
-	cursorMovement checkArrowPressed();
+	CursorMovementState checkArrowPressed();
+	EditCommand checkEditCommand();
+
+	bool isComboPressed(int key1, int key2);
 
 
 };

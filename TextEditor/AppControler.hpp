@@ -7,6 +7,7 @@
 #include "ClearScreen.hpp"
 #include "Renderer.hpp"
 #include "Cursor.hpp"
+#include "KeyboardControl.hpp"
 
 class AppControler {
 private:
@@ -14,6 +15,9 @@ private:
 	TextBuffer buffer;
 	Cursor cursor;
 	Renderer render;
+
+	KeybControl keybControl;
+	EditorState currentEditorState;
 
 	void init();
 	void update();

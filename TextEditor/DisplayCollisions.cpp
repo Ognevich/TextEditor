@@ -21,7 +21,7 @@ bool DisplayCollisions::checkRightSideDisplayCollision(int currentColPos)
     return false;
 }
 
-bool DisplayCollisions::checkUpDisplayCollision(int currentRowPos)
+bool DisplayCollisions::checkTopDisplayCollision(int currentRowPos)
 {
     
     if (currentRowPos - 1 < 0) {

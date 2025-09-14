@@ -4,6 +4,7 @@
 AppControler::AppControler()
 {
 	programState = ProgramStates::DEFAULT;
+    currentEditorState = EditorState::DEFAULT;
 }
 
 void AppControler::startProgram()
@@ -44,6 +45,28 @@ void AppControler::run() {
 
     while (programState != ProgramStates::STOP_PROGRAM) {
         update();
-        cursor.userMoveCursor(buffer);
+
+        EditCommand cmd = keybControl.checkEditCommand();
+
+        switch (cmd) {
+        case EditCommand::SWITCH_TO_MOVE:
+            currentEditorState = EditorState::MOVE_STATE;
+            break;
+        case EditCommand::SWITCH_TO_EDIT:
+            currentEditorState = EditorState::EDIT_STATE;
+            break;
+        case EditCommand::NONE:
+            break;
+        }
+
+        switch (currentEditorState) {
+        case EditorState::MOVE_STATE:
+            cursor.userMoveCursor(buffer);
+            break;
+        case EditorState::EDIT_STATE:
+            break;
+        case EditorState::DEFAULT:
+            break;
+        }
     }
 }
