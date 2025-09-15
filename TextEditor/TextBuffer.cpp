@@ -24,6 +24,11 @@ void TextBuffer::addLine(const std::string& line)
 	buffer[buffer.size() - 1] = line;
 }
 
+void TextBuffer::insertChar(int row, int col, char symbol)
+{
+	buffer[row][col] = symbol;
+}
+
 void TextBuffer::deleteLine(int index)
 {
 	if (index-1 < 0 || index-1 >= buffer.size()) {

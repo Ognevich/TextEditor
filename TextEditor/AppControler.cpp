@@ -73,9 +73,23 @@ void AppControler::editCurrentEditorState()
         cursor.userMoveCursor(buffer);
         break;
     case EditorState::EDIT_STATE:
-
+        handleEditInput();
         break;
     case EditorState::DEFAULT:
         break;
     }
+}
+
+void AppControler::handleEditInput()
+{
+    int row = cursor.getRows();
+    int col = cursor.getCols();
+
+    for (char c = 32; c < 127; ++c) {
+        if (GetAsyncKeyState(c) & 0x0001) {
+            buffer.insertChar(row, col, c);
+            cursor.setCols(col + 1);
+        }
+    }
+
 }
