@@ -29,6 +29,9 @@ public:
 	void startProgram();
 	void run();
 
+	void editCommandState(EditCommand cmd);
+	void editCurrentEditorState();
+
 
 };
 
