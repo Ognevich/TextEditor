@@ -12,12 +12,10 @@ bool DisplayCollisions::checkLeftSideDisplayCollision(int currentColPos)
 
 bool DisplayCollisions::checkRightSideDisplayCollision(int currentColPos)
 {
-    if (currentColPos + 1 > BUFFER_COLS) {
+    if (currentColPos >= BUFFER_COLS) {
         LOG_INFO("Right side Collision is working");
         return true;
     }
-    
-    
     return false;
 }
 

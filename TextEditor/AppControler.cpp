@@ -1,4 +1,5 @@
 
+
 #include "AppControler.hpp"
 
 AppControler::AppControler()
@@ -35,6 +36,7 @@ void AppControler::update() {
         int screenRow = idx - startRow;
         cursor.moveCursor(screenRow, 0);
         render.RenderBufferLine(buffer, idx);
+        cursor.moveCursor(cursor.getRows(), cursor.getCols());
     }
     buffer.setConstantBufferLines(buffer.getBufferLines());
 }
@@ -45,7 +47,7 @@ void AppControler::run() {
 
     while (programState != ProgramStates::STOP_PROGRAM) {
         update();
-        buffer.editLineByIndex(5, "hello");
+        //buffer.editLineByIndex(5, "hello");
         EditCommand cmd = keybControl.checkEditCommand();
         editCommandState(cmd);
         editCurrentEditorState();
@@ -85,11 +87,26 @@ void AppControler::handleEditInput()
     int row = cursor.getRows();
     int col = cursor.getCols();
 
-    for (char c = 32; c < 127; ++c) {
-        if (GetAsyncKeyState(c) & 0x0001) {
-            buffer.insertChar(row, col, c);
-            cursor.setCols(col + 1);
+    handleCharInput(row, col);
+
+}
+
+void AppControler::handleCharInput(int row, int col)
+{
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    DWORD events;
+    INPUT_RECORD inputRecord;
+
+    if (PeekConsoleInput(hInput, &inputRecord, 1, &events) && events > 0) {
+        ReadConsoleInput(hInput, &inputRecord, 1, &events);
+
+        if (inputRecord.EventType == KEY_EVENT && inputRecord.Event.KeyEvent.bKeyDown) {
+            char c = inputRecord.Event.KeyEvent.uChar.AsciiChar;
+
+            if (c >= 32 && c <= 126) {
+                buffer.insertChar(row, col, c);
+                cursor.setCols(col + 1);
+            }
         }
     }
-
 }

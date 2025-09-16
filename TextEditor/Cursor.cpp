@@ -30,7 +30,10 @@ void Cursor::setRows(int newRows)
 
 void Cursor::setCols(int newCols)
 {
-    this->cols = newCols;
+    if (dispCollisions.checkRightSideDisplayCollision(newCols))
+        this->cols = BUFFER_COLS - 1;
+    else
+        this->cols = newCols;
 }
 
 

@@ -3,6 +3,6 @@
 
 #define BUFFER_ROWS 30
 #define BUFFER_COLS 80
-#define START_CURSOR_POS 10
+#define START_CURSOR_POS 0
 
 #endif

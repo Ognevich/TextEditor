@@ -33,6 +33,7 @@ public:
 	void editCurrentEditorState();
 	
 	void handleEditInput();
+	void handleCharInput(int row, int col);
 
 };
 
