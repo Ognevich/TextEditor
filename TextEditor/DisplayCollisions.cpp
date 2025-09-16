@@ -3,7 +3,7 @@
 bool DisplayCollisions::checkLeftSideDisplayCollision(int currentColPos)
 {
 
-    if (currentColPos - 1 < START_CURSOR_POS) {
+    if (currentColPos <= START_CURSOR_POS) {
         LOG_INFO("Left side Collision is working");
         return true;
     }

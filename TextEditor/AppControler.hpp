@@ -34,6 +34,7 @@ public:
 	
 	void handleEditInput();
 	void handleCharInput(int row, int col);
+	void handleDeleteInput(int row, int col);
 
 };
 

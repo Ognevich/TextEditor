@@ -28,7 +28,9 @@ public:
     void moveCursor(int row, int col);
 
 	void setRows(int newRows);
-	void setCols(int newCols);
+	void setColsRight(int newCols);
+    void setColsLeft(int newCols);
+
     static void showCursor()
     {
 
@@ -67,6 +69,8 @@ public:
     void MoveCursorUp();
     void MoveCursorLeft();
     void MoveCursorRight();
+
+    void clearCursorBuffer();
 };
 
 template<typename T>

@@ -72,6 +72,7 @@ void AppControler::editCurrentEditorState()
 {
     switch (currentEditorState) {
     case EditorState::MOVE_STATE:
+        cursor.clearCursorBuffer();
         cursor.userMoveCursor(buffer);
         break;
     case EditorState::EDIT_STATE:
@@ -88,7 +89,7 @@ void AppControler::handleEditInput()
     int col = cursor.getCols();
 
     handleCharInput(row, col);
-
+    handleDeleteInput(row, col);
 }
 
 void AppControler::handleCharInput(int row, int col)
@@ -105,8 +106,16 @@ void AppControler::handleCharInput(int row, int col)
 
             if (c >= 32 && c <= 126) {
                 buffer.insertChar(row, col, c);
-                cursor.setCols(col + 1);
+                cursor.setColsRight(col + 1);
             }
         }
+    }
+}
+
+void AppControler::handleDeleteInput(int row, int col)
+{
+    if ((GetAsyncKeyState(VK_BACK) & 0x0001)) {
+        buffer.deleteChar(row, col);
+        cursor.setColsLeft(col - 1);
     }
 }

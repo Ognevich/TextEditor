@@ -29,6 +29,11 @@ void TextBuffer::insertChar(int row, int col, char symbol)
 	buffer[row][col] = symbol;
 }
 
+void TextBuffer::deleteChar(int row, int col)
+{
+	buffer[row][col] = ' ';
+}
+
 void TextBuffer::deleteLine(int index)
 {
 	if (index-1 < 0 || index-1 >= buffer.size()) {
