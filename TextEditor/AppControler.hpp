@@ -32,9 +32,8 @@ public:
 	void editCommandState(EditCommand cmd);
 	void editCurrentEditorState();
 	
-	void handleEditInput();
-	void handleCharInput(int row, int col);
-	void handleDeleteInput(int row, int col);
+	KeyCommand mapInputToCommand(INPUT_RECORD& input, char& outChar);
+	void handleInput(int row, int col);
 
 };
 

@@ -24,6 +24,14 @@ enum class EditCommand {
 	SWITCH_TO_EDIT
 };
 
+enum class KeyCommand {
+	NONE,
+	CHAR_INPUT,
+	BACKSPACE,
+	ENTER
+};
+
+
 class KeybControl {
 	
 	CursorMovementState cursorMov;

@@ -12,7 +12,6 @@ void TextBuffer::initBuffer()
 	for (int i = 0; i < numRows; i++) {
 		buffer.push_back(std::string(numCols, ' '));
 	}
-
 	constantBuffer = buffer;
 }
 
@@ -27,6 +26,20 @@ void TextBuffer::addLine(const std::string& line)
 void TextBuffer::insertChar(int row, int col, char symbol)
 {
 	buffer[row][col] = symbol;
+}
+
+void TextBuffer::insertNewLine(int row, int col)
+{
+	if (row < 0 || row >= buffer.size()) return;
+
+	std::string& currentLine = buffer[row];
+
+	std::string left = currentLine.substr(0, col);
+	std::string right = currentLine.substr(col);
+
+	currentLine = left;
+
+	buffer.insert(buffer.begin() + row + 1, right);
 }
 
 void TextBuffer::deleteChar(int row, int col)
