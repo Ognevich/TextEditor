@@ -42,17 +42,22 @@ void TextBuffer::insertNewLine(int row, int col)
 	buffer.insert(buffer.begin() + row + 1, right);
 }
 
-void TextBuffer::deleteChar(int row, int col)
+bool TextBuffer::deleteChar(int row, int col)
 {
+	if (col < 0 || col > BUFFER_COLS)
+		return false;
+	if (buffer[row][col] == ' ')
+		return true;
+	
 	buffer[row][col] = ' ';
+	return false;
 }
 
 void TextBuffer::deleteLine(int index)
 {
-	if (index-1 < 0 || index-1 >= buffer.size()) {
+	if (index - 1 < 0 || index - 1 >= buffer.size()) {
 		return;
 	}
-
 	buffer[index - 1] = std::string(numCols, ' ');
 }
 

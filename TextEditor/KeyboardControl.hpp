@@ -28,6 +28,7 @@ enum class KeyCommand {
 	NONE,
 	CHAR_INPUT,
 	BACKSPACE,
+	SPACE_KEY,
 	ENTER
 };
 

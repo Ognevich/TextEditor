@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>D:\my_projects\c++\TextEditor\x64\Debug\TextEditor.exe</FullPath>
+      <FullPath>D:\my_projects\c++\Projects\TextEditor\x64\Debug\TextEditor.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

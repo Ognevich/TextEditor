@@ -89,20 +89,23 @@ KeyCommand AppControler::mapInputToCommand(INPUT_RECORD& input, char& outChar)
         char c = input.Event.KeyEvent.uChar.AsciiChar;
         WORD vk = input.Event.KeyEvent.wVirtualKeyCode;
 
-        if (c >= 32 && c <= 126) {
+        if (c == ' ')
+            return KeyCommand::SPACE_KEY;
+
+        if (c >= 33 && c <= 126) {
             outChar = c;
             return KeyCommand::CHAR_INPUT;
         }
 
         switch (vk) {
-        case VK_BACK: return KeyCommand::BACKSPACE;
+        case VK_BACK:   return KeyCommand::BACKSPACE;
         case VK_RETURN: return KeyCommand::ENTER;
-        default: return KeyCommand::NONE;
-
+        default:        return KeyCommand::NONE;
         }
     }
     return KeyCommand::NONE;
 }
+
 
 void AppControler::handleInput(int row, int col)
 {
@@ -116,6 +119,8 @@ void AppControler::handleInput(int row, int col)
         char typedChar = '\0';
         KeyCommand cmd = mapInputToCommand(inputRecord, typedChar);
 
+        bool isSpace = false;
+
         switch (cmd)
         {
         case KeyCommand::CHAR_INPUT:
@@ -123,12 +128,19 @@ void AppControler::handleInput(int row, int col)
             cursor.setColsRight(col + 1);
             break;
         case KeyCommand::BACKSPACE:
-            buffer.deleteChar(row, col);
+            isSpace = buffer.deleteChar(row, col);              
             cursor.setColsLeft(col - 1);
+            if (isSpace)
+                cursor.moveCursor(row, col - 1);
             break;
         case KeyCommand::ENTER:
             buffer.insertNewLine(row, col);
             cursor.setRows(row );
+            break;
+        case KeyCommand::SPACE_KEY:
+            buffer.insertChar(row, col, ' ');
+            cursor.setColsRight(col + 1);
+            cursor.moveCursor(row, col + 1);
             break;
         case KeyCommand::NONE:
             break;

@@ -34,7 +34,6 @@ public:
 	
 	KeyCommand mapInputToCommand(INPUT_RECORD& input, char& outChar);
 	void handleInput(int row, int col);
-
 };
 
 #endif
