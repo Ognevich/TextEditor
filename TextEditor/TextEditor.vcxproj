@@ -130,6 +130,7 @@
     <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="DisplayCollisions.cpp" />
     <ClCompile Include="FileSystem.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="KeyboardControl.cpp" />
     <ClCompile Include="MyLogger.cpp" />
     <ClCompile Include="main.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Cursor.hpp" />
     <ClInclude Include="DisplayCollisions.hpp" />
     <ClInclude Include="FileSystem.hpp" />
+    <ClInclude Include="InputHandler.hpp" />
     <ClInclude Include="KeyboardControl.hpp" />
     <ClInclude Include="MyLogger.hpp" />
     <ClInclude Include="Paths.hpp" />

@@ -7,6 +7,7 @@
 #include "ClearScreen.hpp"
 #include "Renderer.hpp"
 #include "Cursor.hpp"
+#include "InputHandler.hpp"
 #include "KeyboardControl.hpp"
 
 class AppControler {
@@ -17,6 +18,7 @@ private:
 	Renderer render;
 
 	KeybControl keybControl;
+	InputHandler inputHandler;
 	EditorState currentEditorState;
 
 	void init();
@@ -32,8 +34,6 @@ public:
 	void editCommandState(EditCommand cmd);
 	void editCurrentEditorState();
 	
-	KeyCommand mapInputToCommand(INPUT_RECORD& input, char& outChar);
-	void handleInput(int row, int col);
 };
 
 #endif

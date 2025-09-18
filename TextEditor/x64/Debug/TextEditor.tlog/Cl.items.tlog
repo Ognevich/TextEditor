@@ -3,6 +3,7 @@ D:\my_projects\c++\Projects\TextEditor\TextEditor\AppControler.hpp;D:\my_project
 D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\Cursor.obj
 D:\my_projects\c++\Projects\TextEditor\TextEditor\DisplayCollisions.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\DisplayCollisions.obj
 D:\my_projects\c++\Projects\TextEditor\TextEditor\FileSystem.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\FileSystem.obj
+D:\my_projects\c++\Projects\TextEditor\TextEditor\InputHandler.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\InputHandler.obj
 D:\my_projects\c++\Projects\TextEditor\TextEditor\KeyboardControl.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\KeyboardControl.obj
 D:\my_projects\c++\Projects\TextEditor\TextEditor\MyLogger.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\MyLogger.obj
 D:\my_projects\c++\Projects\TextEditor\TextEditor\main.cpp;D:\my_projects\c++\Projects\TextEditor\TextEditor\x64\Debug\main.obj

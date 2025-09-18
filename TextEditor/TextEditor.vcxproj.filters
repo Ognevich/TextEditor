@@ -60,6 +60,9 @@
     <ClCompile Include="DisplayCollisions.cpp">
       <Filter>Source Files\Engine</Filter>
     </ClCompile>
+    <ClCompile Include="InputHandler.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ProgramStates.hpp">
@@ -94,6 +97,9 @@
     </ClInclude>
     <ClInclude Include="FileSystem.hpp">
       <Filter>Source Files\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.hpp">
+      <Filter>Source Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

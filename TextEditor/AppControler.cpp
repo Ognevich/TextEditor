@@ -3,6 +3,7 @@
 #include "AppControler.hpp"
 
 AppControler::AppControler()
+    : inputHandler(buffer, cursor)
 {
 	programState = ProgramStates::DEFAULT;
     currentEditorState = EditorState::DEFAULT;
@@ -76,76 +77,10 @@ void AppControler::editCurrentEditorState()
         cursor.userMoveCursor(buffer);
         break;
     case EditorState::EDIT_STATE:
-        handleInput(cursor.getRows(), cursor.getCols());
+        inputHandler.handleInput(cursor.getRows(), cursor.getCols());
         break;
     case EditorState::DEFAULT:
         break;
     }
 }
 
-KeyCommand AppControler::mapInputToCommand(INPUT_RECORD& input, char& outChar)
-{
-    if (input.EventType == KEY_EVENT && input.Event.KeyEvent.bKeyDown) {
-        char c = input.Event.KeyEvent.uChar.AsciiChar;
-        WORD vk = input.Event.KeyEvent.wVirtualKeyCode;
-
-        if (c == ' ')
-            return KeyCommand::SPACE_KEY;
-
-        if (c >= 33 && c <= 126) {
-            outChar = c;
-            return KeyCommand::CHAR_INPUT;
-        }
-
-        switch (vk) {
-        case VK_BACK:   return KeyCommand::BACKSPACE;
-        case VK_RETURN: return KeyCommand::ENTER;
-        default:        return KeyCommand::NONE;
-        }
-    }
-    return KeyCommand::NONE;
-}
-
-
-void AppControler::handleInput(int row, int col)
-{
-    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
-    DWORD events;
-    INPUT_RECORD inputRecord;
-
-    if (PeekConsoleInput(hInput, &inputRecord, 1, &events) && events > 0) {
-        ReadConsoleInput(hInput, &inputRecord, 1, &events);
-
-        char typedChar = '\0';
-        KeyCommand cmd = mapInputToCommand(inputRecord, typedChar);
-
-        bool isSpace = false;
-
-        switch (cmd)
-        {
-        case KeyCommand::CHAR_INPUT:
-            buffer.insertChar(row, col, typedChar);
-            cursor.setColsRight(col + 1);
-            break;
-        case KeyCommand::BACKSPACE:
-            isSpace = buffer.deleteChar(row, col);              
-            cursor.setColsLeft(col - 1);
-            if (isSpace)
-                cursor.moveCursor(row, col - 1);
-            break;
-        case KeyCommand::ENTER:
-            buffer.insertNewLine(row, col);
-            cursor.setRows(row );
-            break;
-        case KeyCommand::SPACE_KEY:
-            buffer.insertChar(row, col, ' ');
-            cursor.setColsRight(col + 1);
-            cursor.moveCursor(row, col + 1);
-            break;
-        case KeyCommand::NONE:
-            break;
-        default:
-            break;
-        }
-    }
-}
