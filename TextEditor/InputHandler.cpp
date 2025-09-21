@@ -84,12 +84,29 @@ void InputHandler::handleBackspace(int row, int col)
 void InputHandler::handleEnter(int row, int col)
 {
     buffer->insertNewLine(row, col);
-    cursor->setRows(row);
+    cursor->setColsLeft(START_CURSOR_POS);
+    cursor->setRows(row + 1);
 }
+
 
 void InputHandler::handleSpace(int row, int col)
 {
     buffer->insertChar(row, col, ' ');
     cursor->setColsRight(col + 1);
     cursor->moveCursor(row, col + 1);
+}
+
+void InputHandler::disableConsoleEnter()
+{
+    HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
+    if (hInput == INVALID_HANDLE_VALUE) return;
+
+    DWORD prevMode;
+    if (!GetConsoleMode(hInput, &prevMode)) return;
+
+    DWORD newMode = prevMode;
+
+    newMode &= ~(ENABLE_LINE_INPUT | ENABLE_ECHO_INPUT);
+
+    SetConsoleMode(hInput, newMode);
 }

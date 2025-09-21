@@ -19,6 +19,7 @@ void AppControler::startProgram()
 void AppControler::init()
 {
 	buffer.initBuffer();
+    inputHandler.disableConsoleEnter();
 	//Cursor::hideCursor();
 	
 }

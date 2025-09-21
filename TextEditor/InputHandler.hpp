@@ -15,7 +15,7 @@ private:
 public:
 
     InputHandler(TextBuffer& buf, Cursor& cur);
-	
+
     KeyCommand mapInputToCommand(INPUT_RECORD& input, char& outChar);
     void handleInput(int row, int col);
 
@@ -26,6 +26,7 @@ public:
     void handleEnter(int row, int col);
     void handleSpace(int row, int col);
 
+    void disableConsoleEnter();
 };
 
 

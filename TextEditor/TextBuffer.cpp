@@ -37,8 +37,10 @@ void TextBuffer::insertNewLine(int row, int col)
 	std::string left = currentLine.substr(0, col);
 	std::string right = currentLine.substr(col);
 
-	currentLine = left;
+	left.resize(BUFFER_COLS, ' ');
+	right.resize(BUFFER_COLS, ' ');
 
+	currentLine = left;
 	buffer.insert(buffer.begin() + row + 1, right);
 }
 
