@@ -39,6 +39,7 @@ public:
 
 	int getBufferRows();
 	int getBufferCols();
+	std::vector<int> getChangedRows();
 
 	bool isBufferDontEquals();
 };

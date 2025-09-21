@@ -84,8 +84,7 @@ void InputHandler::handleBackspace(int row, int col)
 void InputHandler::handleEnter(int row, int col)
 {
     buffer->insertNewLine(row, col);
-    cursor->setColsLeft(START_CURSOR_POS);
-    cursor->setRows(row + 1);
+    cursor->setCursorPos(row + 1,col);
 }
 
 

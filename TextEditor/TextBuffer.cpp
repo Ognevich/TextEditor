@@ -41,7 +41,7 @@ void TextBuffer::insertNewLine(int row, int col)
 	right.resize(BUFFER_COLS, ' ');
 
 	currentLine = left;
-	buffer.insert(buffer.begin() + row + 1, right);
+	buffer.insert(buffer.begin() + row, right);
 }
 
 bool TextBuffer::deleteChar(int row, int col)
@@ -135,6 +135,17 @@ int TextBuffer::getBufferRows()
 int TextBuffer::getBufferCols()
 {
 	return this->numCols;
+}
+
+std::vector<int> TextBuffer::getChangedRows()
+{
+	int totalRows = getBufferSize();
+	int visibleRows = getBufferRows();
+
+	int startRow = std::max(0, totalRows - visibleRows);
+	int count = std::min(visibleRows, totalRows - startRow);
+
+	return getChangedLines(startRow, count);
 }
 
 bool TextBuffer::isBufferDontEquals()

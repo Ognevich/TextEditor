@@ -24,6 +24,18 @@ void Renderer::RenderBufferLine(TextBuffer& buffer, int lineIndex)
     std::cout << line << std::endl;
 }
 
+void Renderer::renderRow(int idx, TextBuffer& buffer, Cursor& cursor)
+{
+    int totalRows = buffer.getBufferSize();
+    int visibleRows = buffer.getBufferRows();
+    int startRow = std::max(0, totalRows - visibleRows);
+
+    int screenRow = idx - startRow - 1;
+
+    cursor.moveCursor(screenRow, 0);
+    RenderBufferLine(buffer, idx);
+}
+
 void Renderer::setCurrentRow(int row)
 {
     this->currentRow = row;

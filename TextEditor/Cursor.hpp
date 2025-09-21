@@ -27,6 +27,7 @@ public:
 	int getCols();
     void moveCursor(int row, int col);
 
+    void setCursorPos(int rows, int colc);
 	void setRows(int newRows);
 	void setColsRight(int newCols);
     void setColsLeft(int newCols);
@@ -65,7 +66,7 @@ public:
     template <typename T>
     void userMoveCursor(T& buffer);
 
-    void MoveCursorDowm();
+    void MoveCursorDown();
     void MoveCursorUp();
     void MoveCursorLeft();
     void MoveCursorRight();
@@ -76,46 +77,34 @@ public:
 template<typename T>
 inline void Cursor::userMoveCursor(T& buffer)
 {
-
-    CursorMovementState cursorMov;
-
-    cursorMov = keybControl.checkArrowPressed();
+    CursorMovementState cursorMov = keybControl.checkArrowPressed();
 
     switch (cursorMov)
     {
     case CursorMovementState::MOVE_CURSOR_DOWN:
-    {
         if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize()))
-            MoveCursorDowm();
+            MoveCursorDown();
         break;
-    }
+
     case CursorMovementState::MOVE_CURSOR_UP:
-    {
         if (!dispCollisions.checkTopDisplayCollision(rows))
             MoveCursorUp();
         break;
-    }
+
     case CursorMovementState::MOVE_CURSOR_LEFT:
-    {
         if (!dispCollisions.checkLeftSideDisplayCollision(cols))
             MoveCursorLeft();
         break;
-    }
 
     case CursorMovementState::MOVE_CURSOR_RIGHT:
-    {
         if (!dispCollisions.checkRightSideDisplayCollision(cols))
             MoveCursorRight();
         break;
-    }
+
     case CursorMovementState::DEFAULT:
         break;
-    default:
-        break;
     }
-
 }
-
 
 #endif
 

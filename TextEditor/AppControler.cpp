@@ -1,5 +1,3 @@
-
-
 #include "AppControler.hpp"
 
 AppControler::AppControler()
@@ -25,21 +23,14 @@ void AppControler::init()
 }
 
 void AppControler::update() {
-    int totalRows = buffer.getBufferSize();
-    int visibleRows = buffer.getBufferRows();
-
-    int startRow = (totalRows - visibleRows + 1 > 0) ? (totalRows - visibleRows + 1) : 1;
-
-    int count = (visibleRows < totalRows - startRow + 1) ? visibleRows : (totalRows - startRow + 1);
-
-    auto changedRows = buffer.getChangedLines(startRow, count);
+    auto changedRows = buffer.getChangedRows();
 
     for (int idx : changedRows) {
-        int screenRow = idx - startRow;
-        cursor.moveCursor(screenRow, 0);
-        render.RenderBufferLine(buffer, idx);
-        cursor.moveCursor(cursor.getRows(), cursor.getCols());
+        render.renderRow(idx, buffer, cursor);
     }
+
+    cursor.moveCursor(cursor.getRows(), cursor.getCols());
+
     buffer.setConstantBufferLines(buffer.getBufferLines());
 }
 

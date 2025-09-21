@@ -33,7 +33,7 @@ public:
 
 	void editCommandState(EditCommand cmd);
 	void editCurrentEditorState();
-	
+
 };
 
 #endif

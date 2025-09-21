@@ -23,6 +23,14 @@ void Cursor::moveCursor(int row, int col)
     SetConsoleCursorPosition(hConsole, pos);
 }
 
+void Cursor::setCursorPos(int rows, int cols)
+{
+    this->rows = rows;
+    this->cols = cols;
+    moveCursor(rows, cols);
+
+}
+
 void Cursor::setRows(int newRows)
 {
     this->rows = newRows;
@@ -46,31 +54,27 @@ void Cursor::setColsLeft(int newCols)
 
 
 
-void Cursor::MoveCursorDowm()
+void Cursor::MoveCursorDown()
 {
-    rows++;
-    moveCursor(rows, cols);
+    setCursorPos(rows + 1, cols);
     LOG_INFO("Arrow down is pressed");
 }
 
 void Cursor::MoveCursorUp()
 {
-    rows--;
-    moveCursor(rows, cols);
+    setCursorPos(rows - 1, cols);
     LOG_INFO("Arrow up is pressed");
 }
 
 void Cursor::MoveCursorLeft()
 {
-    cols--;
-    moveCursor(rows, cols);
+    setCursorPos(rows, cols - 1);
     LOG_INFO("Arrow left is pressed");
 }
 
 void Cursor::MoveCursorRight()
 {
-    cols++;
-    moveCursor(rows, cols);
+    setCursorPos(rows, cols + 1);
     LOG_INFO("Arrow right is pressed");
 }
 
