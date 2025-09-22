@@ -7,7 +7,7 @@ AppControler::AppControler()
     currentEditorState = EditorState::DEFAULT;
 }
 
-void AppControler::startProgram()
+void AppControler::startProgram(int argc)
 {
 	init();
 	run();
@@ -16,6 +16,7 @@ void AppControler::startProgram()
 
 void AppControler::init()
 {
+    system("cls");
 	buffer.initBuffer();
     inputHandler.disableConsoleEnter();
 	//Cursor::hideCursor();

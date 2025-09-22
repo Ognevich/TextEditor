@@ -1,5 +1,7 @@
 ﻿  AppControler.cpp
-x64\Debug\AppControler.obj : warning LNK4042: object specified more than once; extras ignored
-  TextEditor.vcxproj -> D:\my_projects\c++\Projects\TextEditor\x64\Debug\TextEditor.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
+  AppControler.hpp
+  FileSystem.cpp
+D:\my_projects\c++\Projects\TextEditor\TextEditor\FileSystem.cpp(42,1): error C2059: syntax error: '}'
+  main.cpp
+D:\my_projects\c++\Projects\TextEditor\TextEditor\main.cpp(12,13): warning C4101: 'fileSystem': unreferenced local variable
+  Generating Code...

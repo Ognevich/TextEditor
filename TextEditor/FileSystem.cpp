@@ -35,3 +35,16 @@ void FileSystem::saveToFile(const std::string& filePath, std::vector<std::string
 
     file.close();
 }
+
+void FileSystem::startFileInitialization(int argc)
+{
+    if (!isSufficientArgumrntValue(argc))
+}
+
+bool FileSystem::isSufficientArgumrntValue(int argc)
+{
+    if (argc < 2) {
+        return false;
+    }
+    return true;
+}

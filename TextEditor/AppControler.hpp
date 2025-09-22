@@ -28,7 +28,7 @@ public:
 
 	AppControler();
 
-	void startProgram();
+	void startProgram(int argc);
 	void run();
 
 	void editCommandState(EditCommand cmd);

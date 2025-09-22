@@ -15,6 +15,9 @@ public:
 	std::vector<std::string> LoadFromFile(const std::string & filePath);
 	void saveToFile(const std::string& filePath, std::vector<std::string> data);
 
+    void startFileInitialization(int argc);
+
+    bool isSufficientArgumrntValue(int argc);
 
 };
 
