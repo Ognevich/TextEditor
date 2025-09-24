@@ -3,7 +3,7 @@
 KeybControl::KeybControl()
 {
 	cursorMov = CursorMovementState::DEFAULT;
-    editState = EditorState::DEFAULT;
+    editState = EditorState::DEFAULT_;
 }
 
 CursorMovementState KeybControl::checkArrowPressed()
@@ -32,6 +32,10 @@ EditCommand KeybControl::checkEditCommand()
     if (isComboPressed(VK_CONTROL, 'N')) {
         LOG_INFO("Switch to MOVE_STATE");
         return EditCommand::SWITCH_TO_MOVE;
+    }
+    if (isComboPressed(VK_CONTROL, 'S')) {
+        LOG_INFO("Switch to SWITCH_TO_STOP ");
+        return EditCommand::SWITCH_TO_STOP;
     }
 
     return EditCommand::NONE;

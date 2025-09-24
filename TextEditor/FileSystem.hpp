@@ -1,33 +1,38 @@
+#define _CRT_SECURE_NO_WARNINGS
 #ifndef _FILE_SYSTEM_HPP_
 #define _FILE_SYSTEM_HPP_
 #include <string>
 #include <fstream>
 #include <vector>
+#include "Config.hpp"
 
 class FileSystem {
+
+    std::string filename;
+    std::string filePath;
 
 private:
 
     template <typename T>
-    bool checkFileOpen(T& file);
+    bool isOpen(T& file);
 public:
+    FileSystem();
+
+    void initFileSystem(std::string filename);
 
 	std::vector<std::string> LoadFromFile(const std::string & filePath);
 	void saveToFile(const std::string& filePath, std::vector<std::string> data);
 
-    void startFileInitialization(int argc);
+    bool startFileInitialization(int argc);
 
-    bool isSufficientArgumrntValue(int argc);
+    std::string getFilePath();
 
 };
 
 template <typename T>
-inline bool FileSystem::checkFileOpen(T& file)
+inline bool FileSystem::isOpen(T& file)
 {
-    if (!file.is_open()) {
-        return 1;
-    }
-    else return 0;
+    return file.is_open();
 }
 
 

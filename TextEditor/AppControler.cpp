@@ -3,23 +3,36 @@
 AppControler::AppControler()
     : inputHandler(buffer, cursor)
 {
-	programState = ProgramStates::DEFAULT;
-    currentEditorState = EditorState::DEFAULT;
+	programState = ProgramStates::DEFAULT_;
+    fileSystemState = FileSystemStates::DEFAULT;
+    currentEditorState = EditorState::DEFAULT_;
+
 }
 
-void AppControler::startProgram(int argc)
+void AppControler::startProgram(int argc, char* argv[])
 {
-	init();
+	init(argc, argv);
 	run();
 }
 
 
-void AppControler::init()
+void AppControler::init(int argc,char* argv[])
 {
-    system("cls");
-	buffer.initBuffer();
-    inputHandler.disableConsoleEnter();
-	//Cursor::hideCursor();
+    fileSystem.initFileSystem(argv[1]);
+
+    if (!fileSystem.startFileInitialization(argc)) {
+        fileSystemState = FileSystemStates::FILE_SYSTEM_FAILED;
+        LOG_ERROR("File system failed");
+        return;
+    }
+    else {
+        fileSystemState = FileSystemStates::FILE_SYSTEM_WORKING;
+        LOG_INFO("File system started");
+        system("cls");
+        buffer.initBuffer();
+        inputHandler.disableConsoleEnter();
+        //Cursor::hideCursor();
+    }
 	
 }
 
@@ -35,17 +48,25 @@ void AppControler::update() {
     buffer.setConstantBufferLines(buffer.getBufferLines());
 }
 
+void AppControler::shutdown()
+{
+    if (fileSystemState != FileSystemStates::FILE_SYSTEM_FAILED) {
+        fileSystem.saveToFile(fileSystem.getFilePath(), buffer.getBufferLines());
+    }
+}
+
 
 void AppControler::run() {
-    render.RenderAllBuffer(buffer);
-
-    while (programState != ProgramStates::STOP_PROGRAM) {
-        update();
-        //buffer.editLineByIndex(5, "hello");
-        EditCommand cmd = keybControl.checkEditCommand();
-        editCommandState(cmd);
-        editCurrentEditorState();
+    if (fileSystemState != FileSystemStates::FILE_SYSTEM_FAILED) {
+        render.RenderAllBuffer(buffer);
+        while (programState != ProgramStates::STOP_PROGRAM) {
+            update();
+            EditCommand cmd = keybControl.checkEditCommand();
+            editCommandState(cmd);
+            editCurrentEditorState();
+        }
     }
+    return;
 }
 
 void AppControler::editCommandState(EditCommand cmd)
@@ -56,6 +77,9 @@ void AppControler::editCommandState(EditCommand cmd)
         break;
     case EditCommand::SWITCH_TO_EDIT:
         currentEditorState = EditorState::EDIT_STATE;
+        break;
+    case EditCommand::SWITCH_TO_STOP:
+        currentEditorState = EditorState::STOP_EDITOR_STATE;
         break;
     case EditCommand::NONE:
         break;
@@ -72,7 +96,10 @@ void AppControler::editCurrentEditorState()
     case EditorState::EDIT_STATE:
         inputHandler.handleInput(cursor.getRows(), cursor.getCols());
         break;
-    case EditorState::DEFAULT:
+    case EditorState::STOP_EDITOR_STATE:
+        programState = ProgramStates::STOP_PROGRAM;
+        break;
+    case EditorState::DEFAULT_:
         break;
     }
 }

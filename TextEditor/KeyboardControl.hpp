@@ -15,13 +15,15 @@ enum class CursorMovementState {
 enum class EditorState {
 	MOVE_STATE,
 	EDIT_STATE,
-	DEFAULT
+	STOP_EDITOR_STATE,
+	DEFAULT_
 };
 
 enum class EditCommand {
 	NONE,
 	SWITCH_TO_MOVE,
-	SWITCH_TO_EDIT
+	SWITCH_TO_EDIT,
+	SWITCH_TO_STOP
 };
 
 enum class KeyCommand {

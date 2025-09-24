@@ -1,10 +1,21 @@
 #include "FileSystem.hpp"
 
+FileSystem::FileSystem()
+    : filename(""), filePath("")
+{
+}
+
+void FileSystem::initFileSystem(std::string filename)
+{
+    this->filename = filename;
+    this->filePath = std::string(FILE_PATH) + "\\" + this->filename;
+}
+
 std::vector<std::string> FileSystem::LoadFromFile(const std::string& filePath)
 {
     std::ifstream file(filePath);
 
-    if (checkFileOpen(file)) {
+    if (!isOpen(file)) {
         return {};
     }
 
@@ -25,7 +36,7 @@ void FileSystem::saveToFile(const std::string& filePath, std::vector<std::string
 
     std::ofstream file(filePath);
 
-    if (checkFileOpen(file)) {
+    if (!isOpen(file)) {
         return;
     }
 
@@ -36,15 +47,27 @@ void FileSystem::saveToFile(const std::string& filePath, std::vector<std::string
     file.close();
 }
 
-void FileSystem::startFileInitialization(int argc)
-{
-    if (!isSufficientArgumrntValue(argc))
+bool FileSystem::startFileInitialization(int argc) {
+    if (argc < 2) {
+        return false; 
+    }
+
+    std::ifstream file(this->filePath);
+    if (isOpen(file)) {
+        return true;
+    }
+    else {
+        std::ofstream newFile(this->filePath);
+        if (!isOpen(newFile)) {
+            return false; 
+        }
+        newFile.close();
+        return true; 
+    }
 }
 
-bool FileSystem::isSufficientArgumrntValue(int argc)
+std::string FileSystem::getFilePath()
 {
-    if (argc < 2) {
-        return false;
-    }
-    return true;
+    return this->filePath;
 }
+

@@ -13,6 +13,9 @@
 class AppControler {
 private:
 	ProgramStates programState;
+	FileSystemStates fileSystemState;
+
+	FileSystem fileSystem;
 	TextBuffer buffer;
 	Cursor cursor;
 	Renderer render;
@@ -21,14 +24,14 @@ private:
 	InputHandler inputHandler;
 	EditorState currentEditorState;
 
-	void init();
+	void init(int argc, char* argv[]);
 	void update();
-
+	void shutdown();
 public:
 
 	AppControler();
 
-	void startProgram(int argc);
+	void startProgram(int argc, char *argv[]);
 	void run();
 
 	void editCommandState(EditCommand cmd);
