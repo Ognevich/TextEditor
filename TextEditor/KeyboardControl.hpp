@@ -15,7 +15,8 @@ enum class CursorMovementState {
 enum class EditorState {
 	MOVE_STATE,
 	EDIT_STATE,
-	STOP_EDITOR_STATE,
+	STOP_EDITOR_STATE_WITH_SAVING,
+	STOP_EDITOR_STATE_WITHOUT_SAVING,
 	DEFAULT_
 };
 
@@ -23,7 +24,8 @@ enum class EditCommand {
 	NONE,
 	SWITCH_TO_MOVE,
 	SWITCH_TO_EDIT,
-	SWITCH_TO_STOP
+	SWITCH_TO_STOP_WITH_SAVING,
+	SWITCH_TO_STOP_WITHOUT_SAVING
 };
 
 enum class KeyCommand {

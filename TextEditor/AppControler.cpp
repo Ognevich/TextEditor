@@ -13,6 +13,7 @@ void AppControler::startProgram(int argc, char* argv[])
 {
 	init(argc, argv);
 	run();
+    shutdown();
 }
 
 
@@ -50,8 +51,12 @@ void AppControler::update() {
 
 void AppControler::shutdown()
 {
+    // FIX INCORRENT SAVING TO FILE
     if (fileSystemState != FileSystemStates::FILE_SYSTEM_FAILED) {
-        fileSystem.saveToFile(fileSystem.getFilePath(), buffer.getBufferLines());
+        if (currentEditorState == EditorState::STOP_EDITOR_STATE_WITH_SAVING)
+            fileSystem.saveToFile(fileSystem.getFilePath(),buffer.getBufferLines());
+        else
+            return;
     }
 }
 
@@ -78,8 +83,11 @@ void AppControler::editCommandState(EditCommand cmd)
     case EditCommand::SWITCH_TO_EDIT:
         currentEditorState = EditorState::EDIT_STATE;
         break;
-    case EditCommand::SWITCH_TO_STOP:
-        currentEditorState = EditorState::STOP_EDITOR_STATE;
+    case EditCommand::SWITCH_TO_STOP_WITH_SAVING:
+        currentEditorState = EditorState::STOP_EDITOR_STATE_WITH_SAVING;
+        break;
+    case EditCommand::SWITCH_TO_STOP_WITHOUT_SAVING:
+        currentEditorState = EditorState::STOP_EDITOR_STATE_WITHOUT_SAVING;
         break;
     case EditCommand::NONE:
         break;
@@ -96,7 +104,10 @@ void AppControler::editCurrentEditorState()
     case EditorState::EDIT_STATE:
         inputHandler.handleInput(cursor.getRows(), cursor.getCols());
         break;
-    case EditorState::STOP_EDITOR_STATE:
+    case EditorState::STOP_EDITOR_STATE_WITH_SAVING:
+        programState = ProgramStates::STOP_PROGRAM;
+        break;
+    case EditorState::STOP_EDITOR_STATE_WITHOUT_SAVING:
         programState = ProgramStates::STOP_PROGRAM;
         break;
     case EditorState::DEFAULT_:

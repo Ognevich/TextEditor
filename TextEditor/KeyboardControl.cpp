@@ -34,10 +34,13 @@ EditCommand KeybControl::checkEditCommand()
         return EditCommand::SWITCH_TO_MOVE;
     }
     if (isComboPressed(VK_CONTROL, 'S')) {
-        LOG_INFO("Switch to SWITCH_TO_STOP ");
-        return EditCommand::SWITCH_TO_STOP;
+        LOG_INFO("Switch to SWITCH_TO_STOP_WITH_SAVING ");
+        return EditCommand::SWITCH_TO_STOP_WITH_SAVING;
     }
-
+    if (isComboPressed(VK_CONTROL, 'X')) {
+        LOG_INFO("Switch to SWITCH_TO_STOP_WITHOUT");
+        return EditCommand::SWITCH_TO_STOP_WITHOUT_SAVING;
+    }
     return EditCommand::NONE;
 }
 
