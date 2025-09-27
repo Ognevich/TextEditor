@@ -29,7 +29,7 @@ KeyCommand InputHandler::mapInputToCommand(INPUT_RECORD& input, char& outChar)
     return KeyCommand::NONE;
 }
 
-void InputHandler::handleInput(int row, int col)
+void InputHandler::handleInput()
 {
     HANDLE hInput = GetStdHandle(STD_INPUT_HANDLE);
     DWORD events;
@@ -40,6 +40,9 @@ void InputHandler::handleInput(int row, int col)
 
         char typedChar = '\0';
         KeyCommand cmd = mapInputToCommand(inputRecord, typedChar);
+
+        int row = cursor->getRows();
+        int col = cursor->getCols();
 
         dispatchCommand(cmd, typedChar,row, col);
     }
@@ -84,7 +87,7 @@ void InputHandler::handleBackspace(int row, int col)
 void InputHandler::handleEnter(int row, int col)
 {
     buffer->insertNewLine(row, col);
-    cursor->setCursorPos(row + 1,col);
+    cursor->setCursorPos(row + 1,0);
 }
 
 

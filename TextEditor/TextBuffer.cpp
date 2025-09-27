@@ -41,7 +41,8 @@ void TextBuffer::insertNewLine(int row, int col)
 	right.resize(BUFFER_COLS, ' ');
 
 	currentLine = left;
-	buffer.insert(buffer.begin() + row, right);
+
+	buffer.insert(buffer.begin() + row + 1, right);
 }
 
 bool TextBuffer::deleteChar(int row, int col)

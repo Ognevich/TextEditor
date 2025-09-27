@@ -2,10 +2,6 @@
 #include "MyLogger.hpp"
 
 int main(int argc, char* argv[]) {
-
-	
-
-
 	Logger::getInstance("app.log");
 	AppControler app;
 

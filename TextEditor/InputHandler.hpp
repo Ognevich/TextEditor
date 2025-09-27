@@ -17,7 +17,7 @@ public:
     InputHandler(TextBuffer& buf, Cursor& cur);
 
     KeyCommand mapInputToCommand(INPUT_RECORD& input, char& outChar);
-    void handleInput(int row, int col);
+    void handleInput();
 
     void dispatchCommand(KeyCommand cmd, char typedChar, int row, int col);
 
