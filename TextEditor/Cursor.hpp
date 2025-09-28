@@ -66,10 +66,23 @@ public:
     template <typename T>
     void userMoveCursor(T& buffer);
 
+
     void MoveCursorDown();
-    void MoveCursorUp();
+    void MoveCursorUp(DisplayCollisions::VerticalSymbolState state, int bufferLineSize);
     void MoveCursorLeft();
     void MoveCursorRight();
+
+    template <typename T>
+    void moveDown(T& buffer);
+
+    template <typename T>
+    void moveUp(T& buffer);
+
+    template <typename T>
+    void moveLeft(T& buffer);
+
+    template <typename T>
+    void moveRight(T& buffer);
 
     void clearCursorBuffer();
 };
@@ -82,29 +95,52 @@ inline void Cursor::userMoveCursor(T& buffer)
     switch (cursorMov)
     {
     case CursorMovementState::MOVE_CURSOR_DOWN:
-        if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize()))
-            MoveCursorDown();
+        moveDown(buffer);
         break;
-
     case CursorMovementState::MOVE_CURSOR_UP:
-        if (!dispCollisions.checkTopDisplayCollision(rows))
-            MoveCursorUp();
+        moveUp(buffer);
         break;
-
     case CursorMovementState::MOVE_CURSOR_LEFT:
-        if (!dispCollisions.checkLeftSideDisplayCollision(cols))
-            MoveCursorLeft();
+        moveLeft(buffer);
         break;
-
     case CursorMovementState::MOVE_CURSOR_RIGHT:
-        if (!dispCollisions.checkRightSideDisplayCollision(cols))
-            if (dispCollisions.isSymbolRight(cols, rows, buffer.getBufferLines()))
-                MoveCursorRight();
+        moveRight(buffer);
         break;
-
     case CursorMovementState::DEFAULT:
         break;
     }
+}
+
+template<typename T>
+inline void Cursor::moveDown(T& buffer)
+{
+    if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize()))
+        MoveCursorDown();
+}
+
+template<typename T>
+inline void Cursor::moveUp(T& buffer)
+{
+    if (!dispCollisions.checkTopDisplayCollision(rows)) {
+        DisplayCollisions::VerticalSymbolState verticalState = dispCollisions.isSymbolVertical(cols, rows - 1, buffer.getBufferLines());
+        int lineSize = buffer.getLine(rows - 1).size();
+        MoveCursorUp(verticalState, lineSize);
+    }
+}
+
+template<typename T>
+inline void Cursor::moveLeft(T& buffer)
+{
+    if (!dispCollisions.checkLeftSideDisplayCollision(cols))
+        MoveCursorLeft();
+}
+
+template<typename T>
+inline void Cursor::moveRight(T& buffer)
+{
+    if (!dispCollisions.checkRightSideDisplayCollision(cols))
+        if (dispCollisions.isSymbolRight(cols, rows, buffer.getBufferLines()))
+            MoveCursorRight();
 }
 
 #endif

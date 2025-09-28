@@ -1,5 +1,9 @@
 #include "DisplayCollisions.hpp"
 
+DisplayCollisions::DisplayCollisions()
+{
+}
+
 bool DisplayCollisions::checkLeftSideDisplayCollision(int currentColPos)
 {
 
@@ -44,5 +48,24 @@ bool DisplayCollisions::isSymbolRight(int currentColPos, int currentRowPos, std:
         return false;
     return true;
 }
+
+DisplayCollisions::VerticalSymbolState DisplayCollisions::isSymbolVertical (int currentColPos, int cursorRowPos, std::vector<std::string> buffer)
+{
+    int bufferLineSize = buffer[cursorRowPos].size();
+
+    if (bufferLineSize < 1) {
+        return VerticalSymbolState::NO_SYMBOL;
+    }
+    if (bufferLineSize - 1 >= currentColPos) {
+        return VerticalSymbolState::HAS_SYMBOL;
+    }
+    if (bufferLineSize - 1 < currentColPos) {
+        return VerticalSymbolState::HAS_SYMBOL_LEFT;
+    }
+    return VerticalSymbolState::NONE;
+}
+
+          
+
 
 

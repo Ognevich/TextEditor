@@ -42,6 +42,11 @@ void TextBuffer::insertNewLine(int row, int col)
 	buffer.insert(buffer.begin() + row + 1, right);
 }
 
+std::string TextBuffer::getLine(int index)
+{
+	return buffer[index];
+}
+
 bool TextBuffer::deleteChar(int row,int col)
 {
 	if (col < 0 || col > BUFFER_COLS)

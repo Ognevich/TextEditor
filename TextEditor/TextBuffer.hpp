@@ -23,6 +23,7 @@ public:
 	void addLine(const std::string & line);
 	void insertChar(int row, char symbol);
 	void insertNewLine(int row, int col);
+	std::string getLine(int index);
 	bool deleteChar(int row, int col);
 	void deleteLine(int index);
 	void editLineByIndex(int index, std::string text);
