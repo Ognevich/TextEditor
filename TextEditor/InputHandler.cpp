@@ -71,13 +71,13 @@ void InputHandler::dispatchCommand(KeyCommand cmd, char typedChar,int row, int c
 
 void InputHandler::handleCharInput(int row, int col, char c)
 {
-    buffer->insertChar(row, col, c);
+    buffer->insertChar(row, c);
     cursor->setColsRight(col + 1);
 }
 
 void InputHandler::handleBackspace(int row, int col)
 {
-    bool isSpace = buffer->deleteChar(row, col);
+    bool isSpace = buffer->deleteChar(row, col-1);
     cursor->setColsLeft(col - 1);
 
     if (isSpace)
@@ -93,7 +93,7 @@ void InputHandler::handleEnter(int row, int col)
 
 void InputHandler::handleSpace(int row, int col)
 {
-    buffer->insertChar(row, col, ' ');
+    buffer->insertChar(row, ' ');
     cursor->setColsRight(col + 1);
     cursor->moveCursor(row, col + 1);
 }

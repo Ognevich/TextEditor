@@ -2,7 +2,7 @@
 
 Cursor::Cursor()
 {
-    this->rows = 0;
+    this->rows = START_CURSOR_POS;
     this->cols = START_CURSOR_POS;
 }
 
@@ -57,25 +57,25 @@ void Cursor::setColsLeft(int newCols)
 void Cursor::MoveCursorDown()
 {
     setCursorPos(rows + 1, cols);
-    LOG_INFO("Arrow down is pressed");
+    LOG_INFO("Move down" + std::to_string(getCols()) + " " + std::to_string(getRows()));
 }
 
 void Cursor::MoveCursorUp()
 {
     setCursorPos(rows - 1, cols);
-    LOG_INFO("Arrow up is pressed");
+    LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
 }
 
 void Cursor::MoveCursorLeft()
 {
     setCursorPos(rows, cols - 1);
-    LOG_INFO("Arrow left is pressed");
+    LOG_INFO("Move left" + std::to_string(getCols()) + " " + std::to_string(getRows()));
 }
 
 void Cursor::MoveCursorRight()
 {
     setCursorPos(rows, cols + 1);
-    LOG_INFO("Arrow right is pressed");
+    LOG_INFO("Move right" + std::to_string(getCols()) + " " + std::to_string(getRows()));
 }
 
 void Cursor::clearCursorBuffer()

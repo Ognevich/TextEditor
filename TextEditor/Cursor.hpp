@@ -98,7 +98,8 @@ inline void Cursor::userMoveCursor(T& buffer)
 
     case CursorMovementState::MOVE_CURSOR_RIGHT:
         if (!dispCollisions.checkRightSideDisplayCollision(cols))
-            MoveCursorRight();
+            if (dispCollisions.isSymbolRight(cols, rows, buffer.getBufferLines()))
+                MoveCursorRight();
         break;
 
     case CursorMovementState::DEFAULT:

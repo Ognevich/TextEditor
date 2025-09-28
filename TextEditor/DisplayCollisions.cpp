@@ -37,3 +37,12 @@ bool DisplayCollisions::checkDownDisplayCollision(int currentRowPos, int bufferS
     }
     return false;
 }
+
+bool DisplayCollisions::isSymbolRight(int currentColPos, int currentRowPos, std::vector<std::string> buffer)
+{
+    if (currentColPos + 1 >= buffer[currentRowPos].size())
+        return false;
+    return true;
+}
+
+

@@ -31,7 +31,6 @@ void AppControler::init(int argc,char* argv[])
         system("cls");
         buffer.initBuffer();
         inputHandler.disableConsoleEnter();
-        //Cursor::hideCursor();
     }
 }
 
