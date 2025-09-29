@@ -67,7 +67,7 @@ public:
     void userMoveCursor(T& buffer);
 
 
-    void MoveCursorDown();
+    void MoveCursorDown(DisplayCollisions::VerticalSymbolState state, int bufferLineSize);
     void MoveCursorUp(DisplayCollisions::VerticalSymbolState state, int bufferLineSize);
     void MoveCursorLeft();
     void MoveCursorRight();
@@ -114,8 +114,14 @@ inline void Cursor::userMoveCursor(T& buffer)
 template<typename T>
 inline void Cursor::moveDown(T& buffer)
 {
-    if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize()))
-        MoveCursorDown();
+    if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize())) {
+        DisplayCollisions::VerticalSymbolState state =
+            dispCollisions.isSymbolVertical(cols, rows + 1, buffer.getBufferLines());
+
+        int lineSize = buffer.getLine(rows + 1).size();
+
+        MoveCursorDown(state, lineSize);
+    }
 }
 
 template<typename T>
