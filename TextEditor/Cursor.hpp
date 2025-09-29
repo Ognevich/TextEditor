@@ -13,14 +13,8 @@
 
 class Cursor {
 
-private:
-	int rows;
-	int cols;
-    KeybControl keybControl;
-    DisplayCollisions dispCollisions;
-
 public:
-	
+
 	Cursor();
 
 	int getRows();
@@ -66,7 +60,7 @@ public:
     template <typename T>
     void userMoveCursor(T& buffer);
 
-
+    void cursorUpDownHanlder(DisplayCollisions::VerticalSymbolState state, int bufferLineSize, int direction);
     void MoveCursorDown(DisplayCollisions::VerticalSymbolState state, int bufferLineSize);
     void MoveCursorUp(DisplayCollisions::VerticalSymbolState state, int bufferLineSize);
     void MoveCursorLeft();
@@ -85,6 +79,23 @@ public:
     void moveRight(T& buffer);
 
     void clearCursorBuffer();
+
+    // for situations when cursor move to empty symbols
+    enum class CursorEmptyState {
+        NONE,
+        ALLOW_ONCE,
+        USED
+    };
+    void setCursorEmptyState(CursorEmptyState newState);
+
+
+private:
+    int rows;
+    int cols;
+    KeybControl keybControl;
+    DisplayCollisions dispCollisions;
+
+    CursorEmptyState cursorEmptyState;
 };
 
 template<typename T>

@@ -17,6 +17,7 @@ KeyCommand InputHandler::mapInputToCommand(INPUT_RECORD& input, char& outChar)
 
         if (c >= 33 && c <= 126) {
             outChar = c;
+            cursor->setCursorEmptyState(Cursor::CursorEmptyState::NONE);
             return KeyCommand::CHAR_INPUT;
         }
 

@@ -4,6 +4,7 @@ Cursor::Cursor()
 {
     this->rows = START_CURSOR_POS;
     this->cols = START_CURSOR_POS;
+    cursorEmptyState = CursorEmptyState::NONE;
 }
 
 int Cursor::getRows()
@@ -54,50 +55,50 @@ void Cursor::setColsLeft(int newCols)
 
 
 
-void Cursor::MoveCursorDown(DisplayCollisions::VerticalSymbolState state, int bufferLineSize)
+void Cursor::cursorUpDownHanlder(DisplayCollisions::VerticalSymbolState state, int bufferLineSize, int direction)
 {
     switch (state)
     {
     case DisplayCollisions::VerticalSymbolState::HAS_SYMBOL:
-        setCursorPos(rows + 1, cols);
-        LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
+        cursorEmptyState = CursorEmptyState::NONE;
+        setCursorPos(rows + direction, cols);
         break;
+
     case DisplayCollisions::VerticalSymbolState::HAS_SYMBOL_LEFT:
-        setCursorPos(rows + 1, bufferLineSize - 1);
-        LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
+        cursorEmptyState = CursorEmptyState::NONE;
+        setCursorPos(rows + direction, bufferLineSize - 1);
         break;
+
     case DisplayCollisions::VerticalSymbolState::NO_SYMBOL:
-        setCursorPos(rows, 0);
-        LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
+        if (cursorEmptyState == CursorEmptyState::USED) {
+            setCursorPos(rows, cols);
+        }
+        else {
+            setCursorPos(rows + direction, 0);
+            cursorEmptyState = CursorEmptyState::USED;
+        }
+
         break;
+
     case DisplayCollisions::VerticalSymbolState::NONE:
-        break;
     default:
         break;
     }
+
+    LOG_INFO(std::string("Move ") +
+        (direction > 0 ? "down " : "up ") +
+        std::to_string(getCols()) + " " + std::to_string(getRows()));
+}
+
+
+void Cursor::MoveCursorDown(DisplayCollisions::VerticalSymbolState state, int bufferLineSize)
+{
+    cursorUpDownHanlder(state, bufferLineSize, +1);
 }
 
 void Cursor::MoveCursorUp(DisplayCollisions::VerticalSymbolState state, int bufferLineSize)
 {
-    switch (state)
-    {
-    case DisplayCollisions::VerticalSymbolState::HAS_SYMBOL:
-        setCursorPos(rows - 1, cols);
-        LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
-        break;
-    case DisplayCollisions::VerticalSymbolState::HAS_SYMBOL_LEFT:
-        setCursorPos(rows - 1, bufferLineSize - 1);
-        LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
-        break;
-    case DisplayCollisions::VerticalSymbolState::NO_SYMBOL:
-        setCursorPos(rows, 0);
-        LOG_INFO("Move up" + std::to_string(getCols()) + " " + std::to_string(getRows()));
-        break;
-    case DisplayCollisions::VerticalSymbolState::NONE:
-        break;
-    default:
-        break;
-    }
+    cursorUpDownHanlder(state, bufferLineSize, -1);
 }
 
 void Cursor::MoveCursorLeft()
@@ -121,5 +122,10 @@ void Cursor::clearCursorBuffer()
     while (PeekConsoleInput(hInput, &inputRecord, 1, &events) && events > 0) {
         ReadConsoleInput(hInput, &inputRecord, 1, &events);
     }
+}
+
+void Cursor::setCursorEmptyState(CursorEmptyState newState)
+{
+    this->cursorEmptyState = newState;
 }
 

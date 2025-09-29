@@ -1,4 +1,37 @@
-﻿  Cursor.cpp
+﻿  AppControler.cpp
+D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(132,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'AppControler.cpp')
+      D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(132,22):
+      the template instantiation context (the oldest one first) is
+          D:\my_projects\c++\Projects\TextEditor\TextEditor\AppControler.cpp(98,16):
+          see reference to function template instantiation 'void Cursor::userMoveCursor<TextBuffer>(T &)' being compiled
+          with
+          [
+              T=TextBuffer
+          ]
+          D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(109,9):
+          see reference to function template instantiation 'void Cursor::moveDown<T>(T &)' being compiled
+          with
+          [
+              T=TextBuffer
+          ]
+  
+D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(143,22): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'AppControler.cpp')
+      D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(143,22):
+      the template instantiation context (the oldest one first) is
+          D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(112,9):
+          see reference to function template instantiation 'void Cursor::moveUp<T>(T &)' being compiled
+          with
+          [
+              T=TextBuffer
+          ]
+  
+  AppControler.hpp
+  Cursor.cpp
+  InputHandler.cpp
+  Renderer.cpp
+  Generating Code...
   TextEditor.vcxproj -> D:\my_projects\c++\Projects\TextEditor\x64\Debug\TextEditor.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
