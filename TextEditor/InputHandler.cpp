@@ -78,11 +78,9 @@ void InputHandler::handleCharInput(int row, int col, char c)
 
 void InputHandler::handleBackspace(int row, int col)
 {
-    bool isSpace = buffer->deleteChar(row, col-1);
-    cursor->setColsLeft(col - 1);
+    buffer->deleteChar(row, col-1);
 
-    if (isSpace)
-        cursor->moveCursor(row, col - 1);
+    cursor->setCursorPos(row, col - 1);
 }
 
 void InputHandler::handleEnter(int row, int col)

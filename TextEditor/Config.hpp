@@ -11,5 +11,9 @@
 // FILE_SYSTEM
 #define FILE_PATH "workingFiles"
 
+// SIDE BAR PANEL FOR CURSOR POS
+#define SIDE_CURSOR_PANEL_ROW 30
+#define SIDE_CURSOR_PANEL_COL 85
+
 
 #endif

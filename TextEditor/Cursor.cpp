@@ -26,10 +26,10 @@ void Cursor::moveCursor(int row, int col)
 
 void Cursor::setCursorPos(int rows, int cols)
 {
+    LOG_DEBUG(std::string("Cursor pos: ") + " row " + std::to_string(rows) + " col " + std::to_string(cols));
     this->rows = rows;
     this->cols = cols;
     moveCursor(rows, cols);
-
 }
 
 void Cursor::setRows(int newRows)
@@ -43,6 +43,7 @@ void Cursor::setColsRight(int newCols)
         this->cols = BUFFER_COLS - 1;
     else
         this->cols = newCols;
+    moveCursor(rows, cols);
 }
 
 void Cursor::setColsLeft(int newCols)

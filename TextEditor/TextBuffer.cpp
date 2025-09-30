@@ -47,15 +47,13 @@ std::string TextBuffer::getLine(int index)
 	return buffer[index];
 }
 
-bool TextBuffer::deleteChar(int row,int col)
+void TextBuffer::deleteChar(int row,int col)
 {
 	if (col < 0 || col > BUFFER_COLS)
-		return false;
-	if (buffer[row][col] == ' ')
-		return true;
+		return;
 	
-	buffer[row].erase(buffer[row].begin() + col);
-	return false;
+	buffer[row][col] = ' ';
+	return;
 }
 
 void TextBuffer::deleteLine(int index)
