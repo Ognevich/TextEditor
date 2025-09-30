@@ -43,7 +43,6 @@ void Cursor::setColsRight(int newCols)
         this->cols = BUFFER_COLS - 1;
     else
         this->cols = newCols;
-    moveCursor(rows, cols);
 }
 
 void Cursor::setColsLeft(int newCols)

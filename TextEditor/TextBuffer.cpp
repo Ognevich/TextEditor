@@ -23,7 +23,7 @@ void TextBuffer::addLine(const std::string& line)
 	buffer[buffer.size() - 1] = line;
 }
 
-void TextBuffer::insertChar(int row, char symbol)
+void TextBuffer::insertChar(int row,int col, char symbol)
 {
 	buffer[row].push_back(symbol);
 }

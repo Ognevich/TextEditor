@@ -72,15 +72,19 @@ void InputHandler::dispatchCommand(KeyCommand cmd, char typedChar,int row, int c
 
 void InputHandler::handleCharInput(int row, int col, char c)
 {
-    buffer->insertChar(row, c);
+    buffer->insertChar(row, col + 1,c);
+
     cursor->setColsRight(col + 1);
 }
 
 void InputHandler::handleBackspace(int row, int col)
 {
-    buffer->deleteChar(row, col-1);
+    int previousColPos = col - 1;
+    if (!collisions.checkLeftSideDisplayCollision(col)) {
+        buffer->deleteChar(row, previousColPos);
+        cursor->setCursorPos(row, previousColPos);
+    }
 
-    cursor->setCursorPos(row, col - 1);
 }
 
 void InputHandler::handleEnter(int row, int col)
@@ -92,7 +96,7 @@ void InputHandler::handleEnter(int row, int col)
 
 void InputHandler::handleSpace(int row, int col)
 {
-    buffer->insertChar(row, ' ');
+    buffer->insertChar(row, col + 1, ' ');
     cursor->setColsRight(col + 1);
     cursor->moveCursor(row, col + 1);
 }

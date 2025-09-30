@@ -21,7 +21,7 @@ public:
 	void initBuffer();
 
 	void addLine(const std::string & line);
-	void insertChar(int row, char symbol);
+	void insertChar(int row, int col, char symbol);
 	void insertNewLine(int row, int col);
 	std::string getLine(int index);
 	void deleteChar(int row, int col);

@@ -4,6 +4,7 @@
 #include "TextBuffer.hpp"
 #include "Cursor.hpp"
 #include "KeyboardControl.hpp"
+#include "DisplayCollisions.hpp"
 
 class InputHandler {
 
@@ -11,7 +12,7 @@ private:
 	KeybControl keybControl;
     TextBuffer* buffer;
     Cursor* cursor;
-
+    DisplayCollisions collisions;
 public:
 
     InputHandler(TextBuffer& buf, Cursor& cur);
