@@ -1,9 +1,10 @@
 #include "InputHandler.hpp"
 
-InputHandler::InputHandler(TextBuffer& buf, Cursor& cur)
+InputHandler::InputHandler(TextBuffer& buf, Cursor& cur, Renderer & render)
 {
     buffer = &buf;
     cursor = &cur;
+    render_ = &render;
 }
 
 KeyCommand InputHandler::mapInputToCommand(INPUT_RECORD& input, char& outChar)
@@ -73,8 +74,8 @@ void InputHandler::dispatchCommand(KeyCommand cmd, char typedChar,int row, int c
 void InputHandler::handleCharInput(int row, int col, char c)
 {
     buffer->insertChar(row, col + 1,c);
-
     cursor->setColsRight(col + 1);
+    render_->setRenderRow(row);
 }
 
 void InputHandler::handleBackspace(int row, int col)
@@ -89,7 +90,6 @@ void InputHandler::handleBackspace(int row, int col)
 
 void InputHandler::handleEnter(int row, int col)
 {
-    buffer->insertNewLine(row, col);
     cursor->setCursorPos(row + 1,0);
 }
 

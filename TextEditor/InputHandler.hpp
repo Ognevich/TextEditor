@@ -5,6 +5,7 @@
 #include "Cursor.hpp"
 #include "KeyboardControl.hpp"
 #include "DisplayCollisions.hpp"
+#include "Renderer.hpp"
 
 class InputHandler {
 
@@ -12,10 +13,11 @@ private:
 	KeybControl keybControl;
     TextBuffer* buffer;
     Cursor* cursor;
+    Renderer* render_;
     DisplayCollisions collisions;
 public:
 
-    InputHandler(TextBuffer& buf, Cursor& cur);
+    InputHandler(TextBuffer& buf, Cursor& cur, Renderer& render);
 
     KeyCommand mapInputToCommand(INPUT_RECORD& input, char& outChar);
     void handleInput();

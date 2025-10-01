@@ -1,7 +1,7 @@
 #include "AppControler.hpp"
 
 AppControler::AppControler()
-    : inputHandler(buffer, cursor)
+    : inputHandler(buffer, cursor, render)
 {
 	programState = ProgramStates::DEFAULT_;
     fileSystemState = FileSystemStates::DEFAULT;
@@ -14,7 +14,6 @@ void AppControler::startProgram(int argc, char* argv[])
 	run();
     shutdown();
 }
-
 
 void AppControler::init(int argc,char* argv[])
 {
@@ -35,15 +34,8 @@ void AppControler::init(int argc,char* argv[])
 }
 
 void AppControler::update() {
-    auto changedRows = buffer.getChangedRows();
-
-    for (int idx : changedRows) {
-        render.renderRow(idx, buffer, cursor);
-    }
-
+    render.RenderBufferLine(buffer, render.getRenderRow());
     cursor.moveCursor(cursor.getRows(), cursor.getCols());
-
-    buffer.setConstantBufferLines(buffer.getBufferLines());
 }
 
 void AppControler::shutdown()
@@ -55,7 +47,6 @@ void AppControler::shutdown()
             return;
     }
 }
-
 
 void AppControler::run() {
     if (fileSystemState != FileSystemStates::FILE_SYSTEM_FAILED) {
