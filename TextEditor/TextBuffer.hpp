@@ -11,11 +11,10 @@ private:
     int numCols;  
 
 public:
-    TextBuffer(int rows = 20, int cols = 80);
+    TextBuffer(int rows, int cols);
 
     void initBuffer();
 
-    void addLine(const std::string& line);
     void insertChar(int row, int col, char symbol);
     void deleteChar(int row, int col);
     void deleteLine(int index);

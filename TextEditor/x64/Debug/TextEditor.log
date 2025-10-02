@@ -3,7 +3,7 @@ D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(132,22): warning C4
   (compiling source file 'AppControler.cpp')
       D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(132,22):
       the template instantiation context (the oldest one first) is
-          D:\my_projects\c++\Projects\TextEditor\TextEditor\AppControler.cpp(89,16):
+          D:\my_projects\c++\Projects\TextEditor\TextEditor\AppControler.cpp(88,16):
           see reference to function template instantiation 'void Cursor::userMoveCursor<TextBuffer>(T &)' being compiled
           with
           [
@@ -27,11 +27,6 @@ D:\my_projects\c++\Projects\TextEditor\TextEditor\Cursor.hpp(143,22): warning C4
               T=TextBuffer
           ]
   
-  AppControler.hpp
-  InputHandler.cpp
-  Renderer.cpp
-  Generating Code...
-x64\Debug\AppControler.obj : warning LNK4042: object specified more than once; extras ignored
   TextEditor.vcxproj -> D:\my_projects\c++\Projects\TextEditor\x64\Debug\TextEditor.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

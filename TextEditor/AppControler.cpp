@@ -1,7 +1,7 @@
 #include "AppControler.hpp"
 
 AppControler::AppControler()
-    : inputHandler(buffer, cursor, render)
+    : inputHandler(buffer, cursor, render), buffer(BUFFER_ROWS, BUFFER_COLS)
 {
 	programState = ProgramStates::DEFAULT_;
     fileSystemState = FileSystemStates::DEFAULT;
@@ -50,7 +50,6 @@ void AppControler::shutdown()
 
 void AppControler::run() {
     if (fileSystemState != FileSystemStates::FILE_SYSTEM_FAILED) {
-        render.RenderAllBuffer(buffer);
         while (programState != ProgramStates::STOP_PROGRAM) {
             update();
             EditCommand cmd = keybControl.checkEditCommand();
@@ -85,7 +84,7 @@ void AppControler::editCurrentEditorState()
 {
     switch (currentEditorState) {
     case EditorState::MOVE_STATE:
-        cursor.clearCursorBuffer();
+        //cursor.clearCursorBuffer();
         cursor.userMoveCursor(buffer);
         break;
     case EditorState::EDIT_STATE:

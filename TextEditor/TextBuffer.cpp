@@ -11,10 +11,6 @@ void TextBuffer::initBuffer() {
     }
 }
 
-void TextBuffer::addLine(const std::string& line) {
-    buffer.push_back(line);
-}
-
 void TextBuffer::insertChar(int row, int col, char symbol) {
     if (row < 0 || row >= buffer.size()) return;
     if (col < 0 || col > buffer[row].size()) return;
