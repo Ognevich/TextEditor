@@ -13,9 +13,12 @@ void TextBuffer::initBuffer() {
 
 void TextBuffer::insertChar(int row, int col, char symbol) {
     if (row < 0 || row >= buffer.size()) return;
-    if (col < 0 || col > buffer[row].size()) return;
+    if (col < 0) return;
 
-    buffer[row].insert(buffer[row].begin() + col, symbol);
+    if (col > buffer[row].size()) 
+        buffer[row].push_back(symbol);
+    else
+        buffer[row].insert(buffer[row].begin() + col, symbol);
 }
 
 void TextBuffer::deleteChar(int row, int col) {
@@ -35,7 +38,7 @@ std::string TextBuffer::getLine(int index) const {
     return buffer[index];
 }
 
-std::vector<std::string> TextBuffer::getBufferLines() const {
+std::vector<std::string> TextBuffer::getBuffer() const {
     return buffer;
 }
 

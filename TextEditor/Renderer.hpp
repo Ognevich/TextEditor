@@ -12,8 +12,7 @@ private:
 public:
     Renderer();
 
-    void RenderAllBuffer(TextBuffer& buffer);
-    void RenderBufferLine(TextBuffer& buffer, int lineIndex);
+    void RenderBufferLine(const TextBuffer& buffer, int lineIndex);
 
     void setCurrentRow(int row);
 

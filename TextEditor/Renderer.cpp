@@ -1,23 +1,13 @@
 #include "Renderer.hpp"
 
-Renderer::Renderer() : currentRow(0) {}
-
-void Renderer::RenderAllBuffer(TextBuffer& buffer) {
-    std::vector<std::string> lines = buffer.getBufferLines();
-    int totalRows = buffer.getBufferSize();
-    int visibleRows = buffer.getBufferRows();
-
-    int start = std::min(currentRow, std::max(0, totalRows - visibleRows));
-    int end = std::min(totalRows, start + visibleRows);
-
-    for (int i = start; i < end; i++) {
-        std::cout << lines[i] << std::endl;
-    }
+Renderer::Renderer() {
+    renderRow = 0;
+    currentRow = 0;
 }
 
-void Renderer::RenderBufferLine(TextBuffer& buffer, int lineIndex) {
-    std::vector<std::string> lines = buffer.getBufferLines();
-    if (lineIndex < 0 || lineIndex >= lines.size()) return;
+void Renderer::RenderBufferLine(const TextBuffer& buffer, int lineIndex) {
+    const auto& lines = buffer.getBuffer();
+    if (lineIndex < 0 || lineIndex >= static_cast<int>(lines.size())) return;
 
     std::cout << lines[lineIndex] << std::endl;
 }

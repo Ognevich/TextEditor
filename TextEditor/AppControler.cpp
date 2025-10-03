@@ -1,7 +1,7 @@
 #include "AppControler.hpp"
 
 AppControler::AppControler()
-    : inputHandler(buffer, cursor, render), buffer(BUFFER_ROWS, BUFFER_COLS)
+    : buffer(BUFFER_ROWS, BUFFER_COLS), inputHandler(buffer, cursor, render)
 {
 	programState = ProgramStates::DEFAULT_;
     fileSystemState = FileSystemStates::DEFAULT;
@@ -27,13 +27,13 @@ void AppControler::init(int argc,char* argv[])
     else {
         fileSystemState = FileSystemStates::FILE_SYSTEM_WORKING;
         LOG_INFO("File system started");
-        system("cls");
         buffer.initBuffer();
         inputHandler.disableConsoleEnter();
     }
 }
 
 void AppControler::update() {
+    cls.clear();
     render.RenderBufferLine(buffer, render.getRenderRow());
     cursor.moveCursor(cursor.getRows(), cursor.getCols());
 }
@@ -42,7 +42,7 @@ void AppControler::shutdown()
 {
     if (fileSystemState != FileSystemStates::FILE_SYSTEM_FAILED) {
         if (currentEditorState == EditorState::STOP_EDITOR_STATE_WITH_SAVING)
-            fileSystem.saveToFile(fileSystem.getFilePath(),buffer.getBufferLines());
+            fileSystem.saveToFile(fileSystem.getFilePath(),buffer.getBuffer());
         else
             return;
     }
@@ -84,7 +84,7 @@ void AppControler::editCurrentEditorState()
 {
     switch (currentEditorState) {
     case EditorState::MOVE_STATE:
-        //cursor.clearCursorBuffer();
+        cursor.clearCursorBuffer();
         cursor.userMoveCursor(buffer);
         break;
     case EditorState::EDIT_STATE:

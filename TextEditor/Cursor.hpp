@@ -127,7 +127,7 @@ inline void Cursor::moveDown(T& buffer)
 {
     if (!dispCollisions.checkDownDisplayCollision(rows, buffer.getBufferSize())) {
         DisplayCollisions::VerticalSymbolState state =
-            dispCollisions.isSymbolVertical(cols, rows + 1, buffer.getBufferLines());
+            dispCollisions.isSymbolVertical(cols, rows + 1, buffer.getBuffer());
 
         int lineSize = buffer.getLine(rows + 1).size();
 
@@ -139,7 +139,7 @@ template<typename T>
 inline void Cursor::moveUp(T& buffer)
 {
     if (!dispCollisions.checkTopDisplayCollision(rows)) {
-        DisplayCollisions::VerticalSymbolState verticalState = dispCollisions.isSymbolVertical(cols, rows - 1, buffer.getBufferLines());
+        DisplayCollisions::VerticalSymbolState verticalState = dispCollisions.isSymbolVertical(cols, rows - 1, buffer.getBuffer());
         int lineSize = buffer.getLine(rows - 1).size();
         MoveCursorUp(verticalState, lineSize);
     }
@@ -156,7 +156,7 @@ template<typename T>
 inline void Cursor::moveRight(T& buffer)
 {
     if (!dispCollisions.checkRightSideDisplayCollision(cols))
-        if (dispCollisions.isSymbolRight(cols, rows, buffer.getBufferLines()))
+        if (dispCollisions.isSymbolRight(cols, rows, buffer.getBuffer()))
             MoveCursorRight();
 }
 

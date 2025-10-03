@@ -24,6 +24,8 @@ private:
 	InputHandler inputHandler;
 	EditorState currentEditorState;
 
+	ClearScreen cls;
+
 	void init(int argc, char* argv[]);
 	void update();
 	void shutdown();

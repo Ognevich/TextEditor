@@ -73,7 +73,7 @@ void InputHandler::dispatchCommand(KeyCommand cmd, char typedChar,int row, int c
 
 void InputHandler::handleCharInput(int row, int col, char c)
 {
-    buffer->insertChar(row, col + 1,c);
+    buffer->insertChar(row, col,c);
     cursor->setColsRight(col + 1);
     render_->setRenderRow(row);
 }

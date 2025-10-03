@@ -20,7 +20,7 @@ public:
     void deleteLine(int index);
 
     std::string getLine(int index) const;
-    std::vector<std::string> getBufferLines() const;
+    std::vector<std::string> getBuffer() const;
     int getBufferSize() const;
 
     int getBufferRows() const; 
