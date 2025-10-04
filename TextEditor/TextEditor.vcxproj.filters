@@ -83,9 +83,6 @@
     <ClInclude Include="MyLogger.hpp">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="ClearScreen.hpp">
-      <Filter>Source Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="Cursor.hpp">
       <Filter>Source Files\Engine</Filter>
     </ClInclude>

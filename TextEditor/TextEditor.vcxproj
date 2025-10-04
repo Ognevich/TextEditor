@@ -139,7 +139,6 @@
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ClearScreen.hpp" />
     <ClInclude Include="Config.hpp" />
     <ClInclude Include="Cursor.hpp" />
     <ClInclude Include="DisplayCollisions.hpp" />

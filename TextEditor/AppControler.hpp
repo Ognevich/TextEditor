@@ -4,7 +4,6 @@
 #include "TextBuffer.hpp"
 #include "FileSystem.hpp"
 #include <Windows.h>
-#include "ClearScreen.hpp"
 #include "Renderer.hpp"
 #include "Cursor.hpp"
 #include "InputHandler.hpp"
@@ -23,8 +22,6 @@ private:
 	KeybControl keybControl;
 	InputHandler inputHandler;
 	EditorState currentEditorState;
-
-	ClearScreen cls;
 
 	void init(int argc, char* argv[]);
 	void update();

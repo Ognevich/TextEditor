@@ -33,9 +33,9 @@ void AppControler::init(int argc,char* argv[])
 }
 
 void AppControler::update() {
-    cls.clear();
-    render.RenderBufferLine(buffer, render.getRenderRow());
     cursor.moveCursor(cursor.getRows(), cursor.getCols());
+    render.RenderBufferLine(buffer, render.getRenderRow());
+
 }
 
 void AppControler::shutdown()

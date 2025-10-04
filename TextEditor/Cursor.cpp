@@ -19,9 +19,7 @@ int Cursor::getCols()
 
 void Cursor::moveCursor(int row, int col)
 {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD pos = { (SHORT)col, (SHORT)row };
-    SetConsoleCursorPosition(hConsole, pos);
+    std::cout << "\x1B[" << row << ";" << col << "H";
 }
 
 void Cursor::setCursorPos(int rows, int cols)

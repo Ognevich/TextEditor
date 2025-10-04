@@ -6,6 +6,7 @@ Renderer::Renderer() {
 }
 
 void Renderer::RenderBufferLine(const TextBuffer& buffer, int lineIndex) {
+
     const auto& lines = buffer.getBuffer();
     if (lineIndex < 0 || lineIndex >= static_cast<int>(lines.size())) return;
 
